@@ -1,5 +1,12 @@
 ---
+const pageTitle = "About Me";
 
+const identity = {
+  firstName: "Jacques",
+  country: "Germany",
+};
+
+const done = true;
 ---
 
 <html lang="en">
@@ -8,11 +15,16 @@
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
-    <title>Jacques Lucke</title>
+    <title>{pageTitle}</title>
   </head>
   <body>
     <a href="/">Home</a>
+    <a href="/blog">Blog</a>
     <a href="/about">About</a>
-    <h1>About Me</h1>
+    <h1>{pageTitle}</h1>
+    <ul>
+      <li>I'm {identity.firstName} from {identity.country}.</li>
+      {done && <li>I'm done learning Astro.</li>}
+    </ul>
   </body>
 </html>

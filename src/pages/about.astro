@@ -1,4 +1,7 @@
 ---
+import "../styles/global.css";
+import BaseLayout from "../layouts/BaseLayout.astro";
+
 const pageTitle = "About Me";
 
 const identity = {
@@ -7,24 +10,23 @@ const identity = {
 };
 
 const done = true;
+const lineColor = "red";
 ---
 
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width" />
-    <meta name="generator" content={Astro.generator} />
-    <title>{pageTitle}</title>
-  </head>
-  <body>
-    <a href="/">Home</a>
-    <a href="/blog">Blog</a>
-    <a href="/about">About</a>
-    <h1>{pageTitle}</h1>
-    <ul>
-      <li>I'm {identity.firstName} from {identity.country}.</li>
-      {done && <li>I'm done learning Astro.</li>}
-    </ul>
-  </body>
-</html>
+<style define:vars={{ lineColor }}>
+  h1 {
+    color: purple;
+    font-size: 4rem;
+  }
+
+  .line {
+    color: var(--lineColor);
+  }
+</style>
+
+<BaseLayout pagetitle={pageTitle}
+  ><ul>
+    <li class="line">I'm {identity.firstName} from {identity.country}.</li>
+    {done && <li>I'm done learning Astro.</li>}
+  </ul>
+</BaseLayout>

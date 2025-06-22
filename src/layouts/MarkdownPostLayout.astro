@@ -7,7 +7,7 @@ const tags = frontmatter.tags;
 
 <BaseLayout pagetitle={frontmatter.title}>
   <h1>{frontmatter.title}</h1>
-  <p>Published on: {frontmatter.pubDate.toString().slice(0, 10)}</p>
+  <p>Published on: {frontmatter.pubDate.toLocaleDateString()}</p>
   <p>Written by {frontmatter.author}</p>
   <div class="tags">
     Tags

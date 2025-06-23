@@ -1,5 +1,7 @@
 @import "tailwindcss";
 
+@import "@fontsource-variable/merriweather";
+
 @theme {
   --color-primary-0: #3cb542;
   --color-primary-1: #59be58;
@@ -17,4 +19,6 @@
 
   --color-normal: #eeeeee;
   --color-muted: #a0a0a0;
+
+  --font-family-primary: "Merriweather", serif;
 }

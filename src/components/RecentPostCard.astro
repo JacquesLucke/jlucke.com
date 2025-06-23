@@ -1,0 +1,26 @@
+---
+import type { CollectionEntry } from "astro:content";
+import { any } from "astro:schema";
+
+const { url, frontmatter } = Astro.props;
+---
+
+<a href={url}>
+  <div class="w-full my-2 bg-surface-1 p-2 rounded-md">
+    <div class="text-lg">
+      {frontmatter.title}
+    </div>
+    <div class="text-muted">
+      Posted on {
+        frontmatter.pubDate.toLocaleDateString("en-US", {
+          year: "numeric",
+          month: "short",
+          day: "numeric",
+        })
+      }
+    </div>
+    <div>
+      {frontmatter.description}
+    </div>
+  </div>
+</a>

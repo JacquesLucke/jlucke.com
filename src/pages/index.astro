@@ -1,5 +1,13 @@
 ---
+import { getCollection } from "astro:content";
+import MainHorizontalLine from "../components/MainHorizontalLine.astro";
+import MainTopicCard from "../components/MainTopicCard.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
+import RecentPostCard from "../components/RecentPostCard.astro";
+
+const allPosts = await getCollection("blog");
+allPosts.sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime());
+const recentPosts = allPosts.slice(0, 3);
 ---
 
 <BaseLayout title="Jacques Lucke">
@@ -9,4 +17,22 @@ import BaseLayout from "../layouts/BaseLayout.astro";
       Hi, I'm Jacques Lucke. I do projects for fun and public benefit.
     </div>
   </div>
+  <MainHorizontalLine />
+  <div class="w-full flex justify-between">
+    <MainTopicCard title="Development" url="/about/" />
+    <MainTopicCard title="Teaching" url="/about/" />
+    <MainTopicCard title="Photography" url="/about/" />
+    <MainTopicCard title="Other" url="/about/" />
+  </div>
+  <MainHorizontalLine />
+  <div>
+    {
+      recentPosts.map((post) => (
+        <RecentPostCard frontmatter={post.data} url={`/posts/${post.id}`} />
+      ))
+    }
+  </div>
+  <a href="/blog/">
+    <div class="py-2">All posts...</div>
+  </a>
 </BaseLayout>

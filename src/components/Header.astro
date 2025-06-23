@@ -1,11 +1,13 @@
 ---
-
+import NavigationItem from "./NavigationItem.astro";
 ---
 
-<header>
+<header class="bg-surface-1 w-full">
   <nav>
-    <a href="/">Home</a>
-    <a href="/blog/">Blog</a>
-    <a href="/about/">About</a>
+    <div class="max-w-[300px] mx-auto flex justify-between drop-shadow-md p-1">
+      <NavigationItem href="/" text="Home" />
+      <NavigationItem href="/blog/" text="Blog" />
+      <NavigationItem href="/about/" text="About" />
+    </div>
   </nav>
 </header>

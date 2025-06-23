@@ -1,7 +1,38 @@
 ---
-
+import BlueskyLogo from "./logos/BlueskyLogo.astro";
+import GithubLogo from "./logos/GithubLogo.astro";
+import MastodonLogo from "./logos/MastodonLogo.astro";
+import YouTubeLogo from "./logos/YouTubeLogo.astro";
 ---
 
 <footer>
-  <p class="text-muted">The footer.</p>
+  <div class="flex text-muted justify-between">
+    <div class="">© 2025 Jacques Lucke</div>
+    <div class="flex gap-2">
+      <a
+        href="https://youtube.com/JacquesLucke"
+        class="hover:brightness-150 transition"
+      >
+        <YouTubeLogo />
+      </a>
+      <a
+        href="https://github.com/JacquesLucke"
+        class="hover:brightness-150 transition"
+      >
+        <GithubLogo />
+      </a>
+      <a
+        href="https://bsky.app/profile/jacqueslucke.bsky.social"
+        class="hover:brightness-150 transition"
+      >
+        <BlueskyLogo />
+      </a>
+      <a
+        href="https://mstdn.social/@JacquesLucke"
+        class="hover:brightness-150 transition"
+      >
+        <MastodonLogo />
+      </a>
+    </div>
+  </div>
 </footer>

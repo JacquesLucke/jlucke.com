@@ -3,7 +3,9 @@ const { title, url } = Astro.props;
 ---
 
 <a href={url}>
-  <div class="bg-surface-1 rounded-md overflow-clip">
+  <div
+    class="bg-surface-1 rounded-md overflow-clip hover:rounded-xl duration-200 ease-in-out"
+  >
     <div class="w-56 h-36 bg-surface-2"></div>
     <div class="p-2 text-lg text-center">
       {title}

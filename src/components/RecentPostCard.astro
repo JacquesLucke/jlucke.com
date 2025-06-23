@@ -6,7 +6,9 @@ const { url, frontmatter } = Astro.props;
 ---
 
 <a href={url}>
-  <div class="w-full my-2 bg-surface-1 p-2 rounded-md">
+  <div
+    class="w-full my-2 bg-surface-1 p-2 rounded-md hover:rounded-xl duration-200 ease-in-out"
+  >
     <div class="text-lg">
       {frontmatter.title}
     </div>

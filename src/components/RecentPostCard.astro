@@ -7,9 +7,9 @@ const { url, frontmatter } = Astro.props;
 
 <a href={url}>
   <div
-    class="w-full my-2 bg-surface-1 p-2 rounded-md hover:rounded-xl duration-200 ease-in-out"
+    class="w-full my-2 border-l-1 border-surface-3 p-2 rounded-md hover:rounded-xl duration-200 ease-in-out"
   >
-    <div class="text-lg">
+    <div class="text-xl py-1">
       {frontmatter.title}
     </div>
     <div class="text-muted">
@@ -21,7 +21,7 @@ const { url, frontmatter } = Astro.props;
         })
       }
     </div>
-    <div>
+    <div class="py-1">
       {frontmatter.description}
     </div>
   </div>

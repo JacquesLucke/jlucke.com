@@ -1,32 +1,8 @@
 ---
 import "../styles/global.css";
 import BaseLayout from "../layouts/BaseLayout.astro";
-
-const pageTitle = "About Me";
-
-const identity = {
-  firstName: "Jacques",
-  country: "Germany",
-};
-
-const done = true;
-const lineColor = "red";
 ---
 
-<style define:vars={{ lineColor }}>
-  h1 {
-    color: purple;
-    font-size: 4rem;
-  }
-
-  .line {
-    color: var(--lineColor);
-  }
-</style>
-
-<BaseLayout pagetitle={pageTitle}
-  ><ul>
-    <li class="line">I'm {identity.firstName} from {identity.country}.</li>
-    {done && <li>I'm done learning Astro.</li>}
-  </ul>
+<BaseLayout title="About - Jacques Lucke">
+  <h1>About</h1>
 </BaseLayout>

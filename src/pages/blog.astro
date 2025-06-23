@@ -1,18 +1,18 @@
 ---
 import "../styles/global.css";
 import BaseLayout from "../layouts/BaseLayout.astro";
-import BlogPostItem from "../components/BlogPostItem.astro";
 import { getCollection } from "astro:content";
 
 const allPosts = await getCollection("blog");
-const pageTitle = "Blog";
 ---
 
-<BaseLayout pagetitle={pageTitle}
-  ><ul>
+<BaseLayout title={"Blog - Jacques Lucke"}>
+  <ul>
     {
       allPosts.map((post: any) => (
-        <BlogPostItem title={post.data.title} url={`/posts/${post.id}`} />
+        <li>
+          <a href={`/posts/${post.id}`}>{post.data.title}</a>
+        </li>
       ))
     }
   </ul>

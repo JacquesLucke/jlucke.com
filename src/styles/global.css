@@ -3,12 +3,34 @@
 @import "@fontsource-variable/merriweather";
 
 @theme {
-  --color-surface-0: #f4f4f4;
-  --color-surface-1: #e0e0e0;
-  --color-surface-2: #d3d3d3;
+  --color-surface-0: ;
+  --color-surface-1: ;
+  --color-surface-2: ;
 
-  --color-normal: #111111;
-  --color-muted: #a0a0a0;
+  --color-normal: ;
+  --color-muted: ;
 
-  --font-family-primary: "Merriweather", serif;
+  --font-family-primary: ;
+}
+
+@layer base {
+  :root {
+    --color-surface-0: #f4f4f4;
+    --color-surface-1: #e0e0e0;
+    --color-surface-2: #d3d3d3;
+
+    --color-normal: #111111;
+    --color-muted: #a0a0a0;
+
+    --font-family-primary: "Merriweather", serif;
+  }
+
+  .dark {
+    --color-surface-0: #1a1a1a;
+    --color-surface-1: #2a2a2a;
+    --color-surface-2: #3a3a3a;
+
+    --color-normal: #e0e0e0;
+    --color-muted: #a0a0a0;
+  }
 }

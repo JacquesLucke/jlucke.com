@@ -3,21 +3,11 @@
 @import "@fontsource-variable/merriweather";
 
 @theme {
-  --color-primary-0: #3cb542;
-  --color-primary-1: #59be58;
-  --color-primary-2: #71c66d;
-  --color-primary-3: #87cf81;
-  --color-primary-4: #9cd796;
-  --color-primary-5: #b1dfab;
+  --color-surface-0: #f4f4f4;
+  --color-surface-1: #e0e0e0;
+  --color-surface-2: #d3d3d3;
 
-  --color-surface-0: #121212;
-  --color-surface-1: #282828;
-  --color-surface-2: #3f3f3f;
-  --color-surface-3: #575757;
-  --color-surface-4: #717171;
-  --color-surface-5: #8b8b8b;
-
-  --color-normal: #eeeeee;
+  --color-normal: #111111;
   --color-muted: #a0a0a0;
 
   --font-family-primary: "Merriweather", serif;

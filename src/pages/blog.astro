@@ -1,19 +1,17 @@
 ---
 import "../styles/global.css";
 import BaseLayout from "../layouts/BaseLayout.astro";
+import RecentPostCard from "../components/RecentPostCard.astro";
 import { getCollection } from "astro:content";
 
 const allPosts = await getCollection("blog");
+allPosts.sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime());
 ---
 
 <BaseLayout title={"Blog - Jacques Lucke"}>
-  <ul>
     {
-      allPosts.map((post: any) => (
-        <li>
-          <a href={`/posts/${post.id}`}>{post.data.title}</a>
-        </li>
+      allPosts.map((post) => (
+        <RecentPostCard frontmatter={post.data} url={`/posts/${post.id}`} />
       ))
     }
-  </ul>
 </BaseLayout>

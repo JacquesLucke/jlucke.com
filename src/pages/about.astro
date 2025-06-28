@@ -1,8 +1,18 @@
 ---
 import "../styles/global.css";
 import BaseLayout from "../layouts/BaseLayout.astro";
+import MainHorizontalLine from "../components/MainHorizontalLine.astro";
+import TopicOverview from "../components/TopicOverview.astro";
 ---
 
 <BaseLayout title="About - Jacques Lucke">
-  <h1>About</h1>
+  <div class="m-3 flex items-center">
+    <div class="bg-surface-1 rounded-full w-36 h-36"></div>
+    <div class="pl-4 text-lg">Bio...</div>
+  </div>
+  <MainHorizontalLine />
+  <TopicOverview title="Development" />
+  <TopicOverview title="Teaching" />
+  <TopicOverview title="Photography" />
+  <TopicOverview title="Other" />
 </BaseLayout>

@@ -1,12 +1,25 @@
 ---
-const { title, url } = Astro.props;
+import { Picture } from "astro:assets";
+
+const { title, url, image } = Astro.props;
 ---
 
 <a href={url}>
   <div
     class="bg-surface-1 w-full overflow-clip rounded-md duration-200 ease-in-out hover:rounded-xl"
   >
-    <div class="bg-surface-2 h-36 w-full"></div>
+    <div class="bg-surface-2 h-36 w-full">
+      {
+        image && (
+          <Picture
+            src={image}
+            alt={title}
+            width={500}
+            class="h-full w-full object-cover"
+          />
+        )
+      }
+    </div>
     <div class="p-2 text-center text-lg">
       {title}
     </div>

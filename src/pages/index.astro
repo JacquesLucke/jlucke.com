@@ -1,9 +1,15 @@
 ---
 import { getCollection } from "astro:content";
+import { Picture } from "astro:assets";
 import MainHorizontalLine from "../components/MainHorizontalLine.astro";
 import MainTopicCard from "../components/MainTopicCard.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import RecentPostCard from "../components/RecentPostCard.astro";
+import mainImageOther from "../images/main/bread.jpg";
+import mainImageTeaching from "../images/main/wro_school.jpg";
+import mainImagePhotography from "../images/main/macro.jpg";
+import mainImageDevelopment from "../images/main/dev_meeting.png";
+import profilePicture from "../images/profile_picture.jpg";
 
 const allPosts = await getCollection("blog");
 allPosts.sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime());
@@ -12,7 +18,16 @@ const recentPosts = allPosts.slice(0, 3);
 
 <BaseLayout title="Jacques Lucke">
   <div class="m-3 flex items-center">
-    <div class="bg-surface-1 aspect-square h-30 w-30 rounded-full"></div>
+    <div
+      class="bg-surface-1 aspect-square h-30 w-30 overflow-clip rounded-full"
+    >
+      <Picture
+        src={profilePicture}
+        alt="Jacques Lucke"
+        width={500}
+        class="h-full w-full object-cover"
+      />
+    </div>
     <div class="pl-4 text-lg">
       Hi, I'm Jacques Lucke. I do projects for fun or public benefit.
     </div>
@@ -21,10 +36,18 @@ const recentPosts = allPosts.slice(0, 3);
   <div
     class="grid w-full grid-cols-1 gap-2 p-2 sm:grid-cols-2 lg:grid-cols-4 lg:p-0"
   >
-    <MainTopicCard title="Development" url="/about/" />
-    <MainTopicCard title="Teaching" url="/about/" />
-    <MainTopicCard title="Photography" url="/about/" />
-    <MainTopicCard title="Other" url="/about/" />
+    <MainTopicCard
+      title="Development"
+      url="/about/"
+      image={mainImageDevelopment}
+    />
+    <MainTopicCard title="Teaching" url="/about/" image={mainImageTeaching} />
+    <MainTopicCard
+      title="Photography"
+      url="/about/"
+      image={mainImagePhotography}
+    />
+    <MainTopicCard title="Other" url="/about/" image={mainImageOther} />
   </div>
   <MainHorizontalLine />
   <div>

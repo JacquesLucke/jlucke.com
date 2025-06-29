@@ -21,6 +21,7 @@
 
     --color-normal: #111111;
     --color-muted: #a0a0a0;
+    --color-link-normal: #1f4475;
 
     --font-family-primary: "Merriweather", serif;
   }
@@ -32,5 +33,10 @@
 
     --color-normal: #e0e0e0;
     --color-muted: #a0a0a0;
+    --color-link-normal: #cdd5ff;
   }
+}
+
+p > a {
+  color: var(--color-link-normal);
 }

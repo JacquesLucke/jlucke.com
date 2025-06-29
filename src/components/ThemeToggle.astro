@@ -30,13 +30,10 @@
 </style>
 
 <script>
+  import { toggleDarkMode } from "../scripts/dark_mode";
+
   const darkModeToggle = document.getElementById("dark-mode-toggle");
   darkModeToggle!.addEventListener("click", () => {
-    const isDarkMode = document.documentElement.classList.contains("dark");
-    if (isDarkMode) {
-      document.documentElement.classList.remove("dark");
-    } else {
-      document.documentElement.classList.add("dark");
-    }
+    toggleDarkMode();
   });
 </script>

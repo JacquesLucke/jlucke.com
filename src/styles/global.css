@@ -15,9 +15,9 @@
 
 @layer base {
   :root {
-    --color-surface-0: #f4f4f4;
-    --color-surface-1: #e0e0e0;
-    --color-surface-2: #d3d3d3;
+    --color-surface-0: #fcfcfc;
+    --color-surface-1: #f4f4f4;
+    --color-surface-2: #e5e5e5;
 
     --color-normal: #111111;
     --color-muted: #a0a0a0;

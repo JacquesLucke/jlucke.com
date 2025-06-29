@@ -12,13 +12,13 @@ const recentPosts = allPosts.slice(0, 3);
 
 <BaseLayout title="Jacques Lucke">
   <div class="m-3 flex items-center">
-    <div class="bg-surface-1 rounded-full w-36 h-36"></div>
+    <div class="bg-surface-1 h-36 w-36 rounded-full"></div>
     <div class="pl-4 text-lg">
       Hi, I'm Jacques Lucke. I do projects for fun or public benefit.
     </div>
   </div>
   <MainHorizontalLine />
-  <div class="w-full flex justify-between">
+  <div class="flex w-full justify-between">
     <MainTopicCard title="Development" url="/about/" />
     <MainTopicCard title="Teaching" url="/about/" />
     <MainTopicCard title="Photography" url="/about/" />
@@ -34,7 +34,7 @@ const recentPosts = allPosts.slice(0, 3);
   </div>
   <a href="/blog/">
     <div class="flex justify-center">
-      <div class="py-2 rounded p-2 w-fit hover:rounded-xl">See All</div>
+      <div class="w-fit rounded p-2 py-2 hover:rounded-xl">See All</div>
     </div>
   </a>
 </BaseLayout>

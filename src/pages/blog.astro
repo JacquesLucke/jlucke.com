@@ -9,9 +9,9 @@ allPosts.sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime());
 ---
 
 <BaseLayout title={"Blog - Jacques Lucke"}>
-    {
-      allPosts.map((post) => (
-        <RecentPostCard frontmatter={post.data} url={`/posts/${post.id}`} />
-      ))
-    }
+  {
+    allPosts.map((post) => (
+      <RecentPostCard frontmatter={post.data} url={`/posts/${post.id}`} />
+    ))
+  }
 </BaseLayout>

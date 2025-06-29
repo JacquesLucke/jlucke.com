@@ -1,14 +1,36 @@
 ---
 import "../styles/global.css";
+import { Picture } from "astro:assets";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import MainHorizontalLine from "../components/MainHorizontalLine.astro";
 import TopicOverview from "../components/TopicOverview.astro";
+import profilePicture from "../images/profile_picture.jpg";
 ---
 
 <BaseLayout title="About - Jacques Lucke">
-  <div class="m-3 flex items-center">
-    <div class="bg-surface-1 h-36 w-36 rounded-full"></div>
-    <div class="pl-4 text-lg">Bio...</div>
+  <div class="m-3 flex flex-col items-center md:flex-row">
+    <div
+      class="bg-surface-1 mx-4 my-6 aspect-square h-50 w-50 overflow-clip rounded-full"
+    >
+      <Picture
+        src={profilePicture}
+        alt="Jacques Lucke"
+        width={500}
+        class="h-full w-full object-cover"
+      />
+    </div>
+    <div class="pl-4 text-lg">
+      <p class="my-4">
+        I'm Jacques Lucke. I work as a Blender developer, where I lead the
+        Geometry Nodes development. Apart from my work for Blender, I also enjoy
+        working on my own projects, teaching, photography and various other
+        things.
+      </p>
+      <p class="my-4">
+        On this website, I want to share some of my work and ideas with my
+        future self and others.
+      </p>
+    </div>
   </div>
   <MainHorizontalLine />
   <TopicOverview title="Development" />

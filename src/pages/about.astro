@@ -5,6 +5,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import MainHorizontalLine from "../components/MainHorizontalLine.astro";
 import TopicOverview from "../components/TopicOverview.astro";
 import profilePicture from "../images/profile_picture.jpg";
+import TopicOverviewParagraph from "../components/TopicOverviewParagraph.astro";
 ---
 
 <BaseLayout title="About - Jacques Lucke">
@@ -34,13 +35,13 @@ import profilePicture from "../images/profile_picture.jpg";
   </div>
   <MainHorizontalLine />
   <TopicOverview title="Development">
-    <p class="my-4">
+    <TopicOverviewParagraph>
       I started teaching myself to code at an early age. While I started out
       with Pascal, I quickly moved on to learning Python and C#. The XNA Game
       Studio framework introduced me to graphics programming. The need for games
       content led me to learn Blender and other content creation tools.
-    </p>
-    <p class="my-4">
+    </TopicOverviewParagraph>
+    <TopicOverviewParagraph>
       Over time I started to loose interest in actually building games myself
       and got more interested in building software for content creation. I did
       some of that in C# but then pivoted to developing add-ons for Blender.
@@ -48,37 +49,65 @@ import profilePicture from "../images/profile_picture.jpg";
       on Animation Nodes. Since then, pretty much all development work I do is
       open source. It was very exciting when I get the first feedback on my code
       after so many years.
-    </p>
-    <p class="my-4">
+    </TopicOverviewParagraph>
+    <TopicOverviewParagraph>
       I proceeded to study computer science at the Technical University of
       Berlin. During that time I continued to work on Animation Nodes which grew
       more popular. At the end of my studies I got the opportunity to be
       employed by Blender in Amsterdam which I gladly accepted. A year later I
       moved back to my home town Hennigsdorf where I'm now working for Blender
       remotely, visiting Amsterdam a couple times a year.
-    </p>
-    <p class="my-4">
+    </TopicOverviewParagraph>
+    <TopicOverviewParagraph>
       Besides my work on Blender, I also worked on some vscode extensions and
       various other smaller development projects which I might write more about
       in the future.
-    </p>
+    </TopicOverviewParagraph>
   </TopicOverview>
   <TopicOverview title="Teaching">
-    <p class="my-4">
+    <TopicOverviewParagraph>
       I started to enjoy teaching when I was still in school. I was doing a fair
       amount of tutoring in STEM subjects. Nowadays, my main motivation for
       teaching comes from enabling people to do good stuff. For similar reasons,
       I enjoy building tools for makers.
-    </p>
-    <p class="my-4">
+    </TopicOverviewParagraph>
+    <TopicOverviewParagraph>
       Instead of teaching class-rooms, I much prefer working with individuals or
       small groups in real life. Most teaching I do nowadays happens in so
       called "MINT Werkstatt" close to where I live. This is a place where
       children can come on their own time to learn about STEM topics. Besides
       that, I also do some introductory courses for 3D printing, laser cutting
       and textile decoration in the makerspace of the KreativWerk.
-    </p>
+    </TopicOverviewParagraph>
   </TopicOverview>
-  <TopicOverview title="Photography" />
-  <TopicOverview title="Other" />
+  <TopicOverview title="Photography">
+    <TopicOverviewParagraph>
+      I young teen I was playing around with camera a fair amount taking
+      pictures and making short video clips with friends. I continued doing
+      photography and working on smaller film projects throughout my school
+      years and during my studies. Buying a good camera was the first larger
+      purchase I did once I started earning my own money.
+    </TopicOverviewParagraph>
+    <TopicOverviewParagraph>
+      Nowadays, I mostly enjoy taking photos at occasions where there's
+      typically no one else taking high quality photos. That includes family
+      events as well as small sports tournaments, usually (beach) volleyball. I
+      also found that to be a very efficient way to do something nice, useful
+      and personal for many people at once.
+    </TopicOverviewParagraph>
+    <TopicOverviewParagraph>
+      Occasionally, I also do photography out of curiosity (e.g. doing very
+      short/long exposures or macro photography) or just because it's a fun
+      activity to do with friends.
+    </TopicOverviewParagraph>
+  </TopicOverview>
+  <TopicOverview title="Other">
+    <TopicOverviewParagraph>
+      I often find myself diving deep into certain topics for a few weeks,
+      months or even years. The topics are very varied and include e.g.
+      exploring electronics and sourdough bread baking. Besides that I play a
+      fair amount of sports for fun. I might write more about these topics in
+      the future.
+    </TopicOverviewParagraph>
+  </TopicOverview>
 </BaseLayout>

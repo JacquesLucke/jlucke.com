@@ -20,7 +20,7 @@
     --color-surface-2: #e5e5e5;
 
     --color-normal: #111111;
-    --color-muted: #a0a0a0;
+    --color-muted: #575757;
     --color-link-normal: #1f4475;
 
     --font-family-primary: "Merriweather", serif;
@@ -32,7 +32,7 @@
     --color-surface-2: #3a3a3a;
 
     --color-normal: #e0e0e0;
-    --color-muted: #a0a0a0;
+    --color-muted: #a6a6a6;
     --color-link-normal: #cdd5ff;
   }
 }

@@ -5,7 +5,7 @@ import { any } from "astro:schema";
 const { url, frontmatter } = Astro.props;
 ---
 
-<div
+<section
   class="border-surface-3 my-2 w-full rounded-md p-2 duration-200 ease-in-out lg:border-l-1"
 >
   <a href={url}>
@@ -25,4 +25,4 @@ const { url, frontmatter } = Astro.props;
   <div class="py-1">
     {frontmatter.description}
   </div>
-</div>
+</section>

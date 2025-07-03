@@ -5,7 +5,7 @@ const { title, url, image, imageAlt } = Astro.props;
 ---
 
 <a href={url}>
-  <div
+  <section
     class="bg-surface-1 w-full overflow-clip rounded-md duration-200 ease-in-out hover:rounded-xl"
   >
     <div class="bg-surface-2 h-36 w-full">
@@ -24,5 +24,5 @@ const { title, url, image, imageAlt } = Astro.props;
     <div class="p-2 text-center text-lg">
       {title}
     </div>
-  </div>
+  </section>
 </a>

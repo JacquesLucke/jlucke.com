@@ -1,7 +1,7 @@
 ---
 import { Picture } from "astro:assets";
 
-const { title, url, image } = Astro.props;
+const { title, url, image, imageAlt } = Astro.props;
 ---
 
 <a href={url}>
@@ -13,7 +13,7 @@ const { title, url, image } = Astro.props;
         image && (
           <Picture
             src={image}
-            alt={title}
+            alt={imageAlt}
             width={500}
             quality={50}
             class="h-full w-full object-cover"

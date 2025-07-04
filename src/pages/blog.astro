@@ -3,14 +3,14 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import RecentPostCard from "../components/RecentPostCard.astro";
 import { getCollection } from "astro:content";
 
-const allPosts = await getCollection("blog");
-allPosts.sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime());
+let posts = await getCollection("blog");
+posts.sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime());
 ---
 
 <BaseLayout title="Blog by Jacques" description="Overview over the blog posts">
   {
-    allPosts.map((post) => (
-      <RecentPostCard frontmatter={post.data} url={`/posts/${post.id}`} />
+    posts.map((post) => (
+      <RecentPostCard frontmatter={post.data} url={`/blog/${post.id}`} />
     ))
   }
 </BaseLayout>

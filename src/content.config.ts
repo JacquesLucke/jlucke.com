@@ -8,6 +8,7 @@ const blog = defineCollection({
     pubDate: z.date(),
     description: z.string(),
     author: z.string(),
+    status: z.enum(["published", "draft"])
   }),
 });
 

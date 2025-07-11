@@ -15,7 +15,8 @@ export default defineConfig({
       [rehypeAddClasses, {
         "h2": "text-2xl font-bold",
         "ul": "list-disc list-inside my-2",
-        "p": "my-2"
+        "p": "my-2",
+        "strong": "font-bold",
       }]
     ]
   }

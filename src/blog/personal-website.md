@@ -8,7 +8,7 @@ status: draft
 
 ## Requirements
 
-* Static website that's easy and cheap to host everywhere.
+* Static website that's **easy and cheap** to host everywhere.
 * Bloatless, cheap to load.
 * Write content in markdown.
 * Manage in git repo.

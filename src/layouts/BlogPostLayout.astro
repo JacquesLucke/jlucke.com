@@ -5,9 +5,11 @@ const { frontmatter } = Astro.props;
 ---
 
 <BaseLayout title={frontmatter.title} description={frontmatter.description}>
-  <h1 class="mt-4 text-2xl">{frontmatter.title}</h1>
-  <p class="text-muted mb-4">
-    Published on: {frontmatter.pubDate.toLocaleDateString()}
-  </p>
-  <slot />
+  <div class="mx-auto max-w-[750px] px-2">
+    <h1 class="mt-4 text-2xl">{frontmatter.title}</h1>
+    <p class="text-muted mb-4">
+      Published on: {frontmatter.pubDate.toLocaleDateString()}
+    </p>
+    <slot />
+  </div>
 </BaseLayout>

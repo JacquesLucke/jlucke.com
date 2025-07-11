@@ -6,7 +6,7 @@ pubDate: 2025-06-29
 status: draft
 ---
 
-# Requirements
+## Requirements
 
 * Static website that's easy and cheap to host everywhere.
 * Bloatless, cheap to load.

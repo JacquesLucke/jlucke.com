@@ -14,6 +14,7 @@
     "@fontsource-variable/merriweather": "^5.2.4",
     "@tailwindcss/vite": "^4.1.10",
     "astro": "^5.10.0",
+    "rehype-add-classes": "^1.0.0",
     "tailwindcss": "^4.1.10",
     "typescript": "^5.8.3"
   },

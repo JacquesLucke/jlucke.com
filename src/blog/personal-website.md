@@ -13,3 +13,7 @@ status: draft
 * Write content in markdown.
 * Manage in git repo.
 * Full control over website layout.
+
+Started out doing X.
+
+Later moved to Y.

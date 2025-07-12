@@ -1,20 +1,92 @@
 ---
-title: Building my first personal website
+title: Building my personal website
 author: Jacques Lucke
-description: Finally getting rid of the "Hello World" content on my domain.
-pubDate: 2025-06-29
+description: Sharing some insights into how I built my personal website.
+pubDate: 2025-06-12
 status: draft
 ---
 
+After years of having a website that just said "I don't have a website yet" I finally got my act together and built a proper personal website. In this first blog post I want to share my motivation for building it as well as its current technical details.
+
+## Motivation
+
+Over the last few years, I've often thought about writing about the projects I do as part of work and on my own time. My main motivation for that is to share what I've worked on and thought about with my future self and other curious people. I often talk to individuals about these projects and it's nice to have this stuff written down as well.
+
+I've wrote a few blog posts before on [dev.to](https://dev.to/jacqueslucke/a-c-micro-optimization-exercise-3p65) and [code.blender.org](https://code.blender.org/author/jacqueslucke/). However, I'd also like to write about topics unrelated to Blender and programming. I'm not super interested in using existing platforms (like Medium etc.) to share these posts that I don't have a good amount of control over. Therefore, the my logical choice is to just have my own blog.
+
 ## Requirements
 
-* Static website that's **easy and cheap** to host everywhere.
-* Bloatless, cheap to load.
-* Write content in markdown.
-* Manage in git repo.
-* Full control over website layout.
+I've given myself a few constraints for my website.
 
-Started out doing X.
+- I want it to be cheap to host everywhere. While I don't mind paying a bit for the service of distributing my website to the world, I expect that cost to be quite low. I also don't want to be locked in to any specific provider for anything.
+- I want to write my posts in markdown. This is just what I'm used to and it works well for me. Recently, I also found out about [mdx](https://mdxjs.com/) which extends markdown in a few ways that may be interesting to explore in the future. I want to have the freedom to use that or similar syntaxes as needed.
+- I want the entire content to be in a single git repo for easy management and version control.
+- I want to have full control over the layout of the website, without starting from a prebuilt theme.
+- I want the website to be small. It should not come with a bunch of bloat that increases the download size but does not increase its value.
+- I want to know some usage stats but I don't want to have to show a cookie banner.
+- No ads. There is no intention to make money from people just reading the site.
+- I want to support light and dark mode.
 
-Later moved to Y.
+## Implementation
 
+This section will explain some of my choices for which technology to use to build the site.
+
+### Static Site Hosting
+
+Due to the nature of my content and my wish to be able to host it for cheap everywhere, the logical choice was to build a static website. So a static file server is enough to distribute it to its readers. Due to it being free and simple to set-up, I use Github Pages for the hosting. I have my domains on Cloudflare and also use that as CDN.
+
+Moving away from Github to an open source alternative is a project for another day.
+
+### Static Site Generator
+
+Since, I did not want to write raw html/css for each page manually, I was looking at a few static site generators which simplify this process. In the end, I decided to use [Astro](https://astro.build/). I didn't use it before, but it sounded like a perfect fit. After using it for a while now, I'm still very happy with it.
+
+I really liked that I could start out with a tiny empty site. Due to the way it works, I feel in full control over everything that ends up in the final static website. I'm sure other static site generators support that too, but I just didn't have this feeling before.
+
+### CSS
+
+For styling I ended up using [tailwind](https://tailwindcss.com/). I've come to like it when using it in previous projects. The integration with Astro was super easy.
+
+### Design
+
+I started out making a rough design of the website with [Penpot](https://penpot.app/). While that helped, it became annoying somewhat quickly when I wanted to create a custom component for a card on the home page and adjust each instance of it with a different text. It seems like that's supported to some degree, but I had some issues with it. After coming up with an initial layout, it was easier for me to just build that layout directly in html with tailwind instead of using Penpot.
+
+### Light/Dark Mode
+
+While tailwind has the [concept of dark mode](https://tailwindcss.com/docs/dark-mode), I'm not using that currently. Maybe I didn't quite get how to use that properly yet, but I did not want to have to specify dark mode specific styling in most places.
+
+What I do now is to just have some css variables for the color theme at the root level which are changed when there is a `.dark` class on the root element. See the code [here](https://github.com/JacquesLucke/jlucke.com/blob/7e1f1f38e8750632cae670935d95394d3df46ac2/src/styles/global.css#L5-L38). The way I integrated that with tailwind feels a bit weird but it seems to work well. I may still have to iterate on this again in the future.
+
+### Images
+
+Besides avoiding large client-side Javascript libraries, the biggest thing affect page size is images. By default, images (especially photos) are often way bigger than necessary to display them on the web. Thankfully, Astro has [makes it easy](https://docs.astro.build/en/guides/images/) to resize and compress images as part of the build process.
+
+This allowed me to tune the resolution and compression rate per displayed image, keeping the overall page size to a minimum.
+
+### Analytics
+
+While it would be nice to avoid all kinds of tracking, it's still important for me to have at least a rough idea for how many people read this blog. Google analytics is obviously not acceptable since that is too privacy intrusive and also requires a cookie banner. I've decided to use the [Plausible Community Edition](https://github.com/plausible/community-edition/) on my own server. Maybe I'll switch over to their managed offering, but right now would be more expensive than everything else I use combined so it's a bit too much to add for the time being.
+
+I installed it on my "monitoring" Hetzner server which also runs [Prometheus](https://prometheus.io/) for another project already. This way, it does not incur any additional cost for me.
+
+The gathered analytics data is available publicly [here](https://plausible.jlucke.com/jlucke.com).
+
+### Performance Metrics
+
+I've used [Lighthouse](https://github.com/GoogleChrome/lighthouse) to analyze the current state of my website. Initially, there were still some things to fix like images being too large and being loaded too late and some accessibility issues. Now I'm happy that I got a score of 100 on every metric. Not sure if it will be possible to keep this score as more content is added later but I'll certainly try.
+
+## Cost
+
+The running total cost for the website is currently comprised of:
+
+- `10.44$ / year` for the `jlucke.com` domain.
+- `3,92€ / month` for my server running Plausible.
+- `0,60€ / month` for the ipv4 for the server running Plausible.
+
+That said, all of these costs I've had before making this website already. So the additional cost is zero. The domain I use for a long time for my email and the server I use for monitoring over other stuff already.
+
+## Conclusion
+
+Overall, I'm quite happy with the outcome. No I just have to fill the site with more content, starting with this first blog post.
+
+The source code is available [here](https://github.com/JacquesLucke/jlucke.com).

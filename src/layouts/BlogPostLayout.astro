@@ -2,7 +2,9 @@
 import { formatDate } from "../scripts/date_formatting";
 import BaseLayout from "./BaseLayout.astro";
 
-const { frontmatter } = Astro.props;
+const { post } = Astro.props;
+const frontmatter = post.data;
+const blameUrl = `https://github.com/JacquesLucke/jlucke.com/blame/main/${post.filePath}`;
 ---
 
 <BaseLayout title={frontmatter.title} description={frontmatter.description}>
@@ -12,8 +14,50 @@ const { frontmatter } = Astro.props;
     </h1>
     <p class="text-muted font-sans">
       Published on {formatDate(frontmatter.pubDate)}
+      <span class="text-sm">
+        <a href={blameUrl}>(edits)</a>
+      </span>
     </p>
     <p class="text-muted mb-4 font-sans">{frontmatter.author}</p>
-    <slot />
+    <div class="blog-prose-style">
+      <slot />
+    </div>
   </div>
 </BaseLayout>
+
+<style is:inline>
+  .blog-prose-style {
+    font-family: var(--font-serif);
+    font-size: 1.15rem;
+    line-height: 2rem;
+  }
+
+  .blog-prose-style p {
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .blog-prose-style ul {
+    list-style-type: disc;
+    margin-left: 1.25rem;
+  }
+
+  .blog-prose-style h2 {
+    margin-top: 1rem;
+    font-family: var(--font-sans);
+    font-size: 1.75rem;
+    font-weight: 700;
+  }
+
+  .blog-prose-style h3 {
+    margin-top: 1rem;
+    font-family: var(--font-sans);
+    font-size: 1.25rem;
+    font-weight: 700;
+  }
+
+  .blog-prose-style a {
+    text-decoration: underline;
+    text-decoration-color: var(--color-muted);
+  }
+</style>

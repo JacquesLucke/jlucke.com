@@ -3,14 +3,23 @@ import "../styles/global.css";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import MainHorizontalLine from "../components/MainHorizontalLine.astro";
+import profilePicture from "../images/profile_picture.jpg";
+import { getImage } from "astro:assets";
 
 const { title, description } = Astro.props;
+
+const favicon = await getImage({
+  src: profilePicture,
+  format: "webp",
+  width: 32,
+  quality: 80,
+});
 ---
 
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/webp" href={favicon.src} />
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
     <meta name="description" content={description} />

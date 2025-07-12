@@ -15,7 +15,39 @@ const { Content } = await render(post);
 ---
 
 <BlogPostLayout frontmatter={post.data}>
-  <div class="">
+  <div class="blog-prose-style">
     <Content />
   </div>
 </BlogPostLayout>
+
+<style is:inline>
+  .blog-prose-style {
+    font-family: var(--font-serif);
+    font-size: 1.15rem;
+    line-height: 2rem;
+  }
+
+  .blog-prose-style p {
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .blog-prose-style ul {
+    list-style-type: disc;
+    margin-left: 1.25rem;
+  }
+
+  .blog-prose-style h2 {
+    margin-top: 1rem;
+    font-family: var(--font-sans);
+    font-size: 1.5rem;
+    font-weight: 700;
+  }
+
+  .blog-prose-style h3 {
+    margin-top: 1rem;
+    font-family: var(--font-sans);
+    font-size: 1.25rem;
+    font-weight: 700;
+  }
+</style>

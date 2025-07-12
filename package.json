@@ -12,7 +12,8 @@
   "dependencies": {
     "@astrojs/check": "0.9.4",
     "@astrojs/mdx": "4.3.0",
-    "@fontsource-variable/merriweather": "5.2.4",
+    "@fontsource/lato": "^5.2.6",
+    "@fontsource/source-serif-pro": "^5.2.5",
     "@tailwindcss/vite": "4.1.11",
     "astro": "5.11.0",
     "rehype-add-classes": "1.0.0",

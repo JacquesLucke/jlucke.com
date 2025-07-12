@@ -1,6 +1,7 @@
 @import "tailwindcss";
 
-@import "@fontsource-variable/merriweather";
+@import "@fontsource/lato";
+@import "@fontsource/source-serif-pro";
 
 @theme {
   --color-surface-0: ;
@@ -9,8 +10,6 @@
 
   --color-normal: ;
   --color-muted: ;
-
-  --font-family-primary: ;
 }
 
 @layer base {
@@ -23,7 +22,8 @@
     --color-muted: #575757;
     --color-link-normal: #1f4475;
 
-    --font-family-primary: "Merriweather", serif;
+    --font-sans: "Lato", sans-serif;
+    --font-serif: "Source Serif Pro", serif;
   }
 
   .dark {

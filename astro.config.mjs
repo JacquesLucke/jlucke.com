@@ -15,18 +15,7 @@ export default defineConfig({
   },
 
   markdown: {
-    rehypePlugins: [
-      [
-        rehypeAddClasses,
-        {
-          h2: "text-2xl font-bold",
-          h3: "text-xl font-bold",
-          ul: "list-disc list-inside my-2",
-          p: "my-2",
-          strong: "font-bold",
-        },
-      ],
-    ],
+    rehypePlugins: [[rehypeAddClasses, {}]],
   },
 
   integrations: [mdx()],

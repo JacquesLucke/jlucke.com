@@ -6,13 +6,13 @@ pubDate: 2025-06-12
 status: draft
 ---
 
-After years of having a website that just said "I don't have a website yet" I finally got my act together and built a proper personal website. In this first blog post I want to share my motivation for building it as well as its current technical details.
+After years of having a website that just said "I don't have a website yet", I finally got my act together and built a proper personal website. In this first blog post I want to share my motivation for building it as well as its current technical details.
 
 ## Motivation
 
 Over the last few years, I've often thought about writing about the projects I do as part of work and on my own time. My main motivation for that is to share what I've worked on and thought about with my future self and other curious people. I often talk to individuals about these projects and it's nice to have this stuff written down as well.
 
-I've wrote a few blog posts before on [dev.to](https://dev.to/jacqueslucke/a-c-micro-optimization-exercise-3p65) and [code.blender.org](https://code.blender.org/author/jacqueslucke/). However, I'd also like to write about topics unrelated to Blender and programming. I'm not super interested in using existing platforms (like Medium etc.) to share these posts that I don't have a good amount of control over. Therefore, the my logical choice is to just have my own blog.
+I've wrote a few blog posts before on [dev.to](https://dev.to/jacqueslucke) and [code.blender.org](https://code.blender.org/author/jacqueslucke/). However, I'd also like to write about topics unrelated to Blender and programming. I'm not super interested in using existing platforms (like Medium etc.) to share these posts that I don't have a good amount of control over. Therefore, the my logical choice is to just have my own blog.
 
 ## Requirements
 
@@ -63,6 +63,10 @@ Besides avoiding large client-side Javascript libraries, the biggest thing affec
 
 This allowed me to tune the resolution and compression rate per displayed image, keeping the overall page size to a minimum.
 
+### Fonts
+
+...
+
 ### Analytics
 
 While it would be nice to avoid all kinds of tracking, it's still important for me to have at least a rough idea for how many people read this blog. Google analytics is obviously not acceptable since that is too privacy intrusive and also requires a cookie banner. I've decided to use the [Plausible Community Edition](https://github.com/plausible/community-edition/) on my own server. Maybe I'll switch over to their managed offering, but right now would be more expensive than everything else I use combined so it's a bit too much to add for the time being.
@@ -79,9 +83,9 @@ I've used [Lighthouse](https://github.com/GoogleChrome/lighthouse) to analyze th
 
 The running total cost for the website is currently comprised of:
 
-- `10.44$ / year` for the `jlucke.com` domain.
-- `3,92€ / month` for my server running Plausible.
-- `0,60€ / month` for the ipv4 for the server running Plausible.
+- `10.44$` per year for the `jlucke.com` domain.
+- `3.92€` per month for my server running Plausible.
+- `0.60€` per month for the ipv4 for the server running Plausible.
 
 That said, all of these costs I've had before making this website already. So the additional cost is zero. The domain I use for a long time for my email and the server I use for monitoring over other stuff already.
 

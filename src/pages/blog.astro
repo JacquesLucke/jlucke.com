@@ -1,9 +1,9 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import RecentPostCard from "../components/RecentPostCard.astro";
-import { getCollection } from "astro:content";
+import { getShowableBlogPosts } from "../scripts/blog_posts";
 
-let posts = await getCollection("blog");
+let posts = await getShowableBlogPosts();
 posts.sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime());
 ---
 

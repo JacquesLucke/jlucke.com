@@ -1,5 +1,4 @@
 ---
-import { getCollection } from "astro:content";
 import { Picture } from "astro:assets";
 import MainHorizontalLine from "../components/MainHorizontalLine.astro";
 import MainTopicCard from "../components/MainTopicCard.astro";
@@ -10,8 +9,9 @@ import mainImageTeaching from "../images/main/classroom.jpg";
 import mainImagePhotography from "../images/main/macro.jpg";
 import mainImageDevelopment from "../images/main/dev_meeting.png";
 import profilePicture from "../images/profile_picture.jpg";
+import { getShowableBlogPosts } from "../scripts/blog_posts";
 
-const allPosts = await getCollection("blog");
+const allPosts = await getShowableBlogPosts();
 allPosts.sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime());
 const recentPosts = allPosts.slice(0, 3);
 ---

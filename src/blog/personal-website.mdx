@@ -55,7 +55,7 @@ I started out making a rough design of the website with [Penpot](https://penpot.
 
 While tailwind has the [concept of dark mode](https://tailwindcss.com/docs/dark-mode), I'm not using that currently. Maybe I didn't quite get how to use that properly yet, but I did not want to have to specify dark mode specific styling in most places.
 
-What I do now is to just have some css variables for the color theme at the root level which are changed when there is a `.dark` class on the root element. See the code [here](https://github.com/JacquesLucke/jlucke.com/blob/7e1f1f38e8750632cae670935d95394d3df46ac2/src/styles/global.css#L5-L38). The way I integrated that with tailwind feels a bit weird but it seems to work well. I may still have to iterate on this again in the future.
+What I do now is to just have some css variables for the color theme at the root level which are changed when there is a `.dark` class on the root element. [The way I integrated that](https://github.com/JacquesLucke/jlucke.com/blob/7e1f1f38e8750632cae670935d95394d3df46ac2/src/styles/global.css#L5-L38) with tailwind feels a bit weird but it seems to work well. I may still have to iterate on this again in the future.
 
 ### Images
 
@@ -73,7 +73,7 @@ While it would be nice to avoid all kinds of tracking, it's still important for 
 
 I installed it on my "monitoring" Hetzner server which also runs [Prometheus](https://prometheus.io/) for another project already. This way, it does not incur any additional cost for me.
 
-The gathered analytics data is available publicly [here](https://plausible.jlucke.com/jlucke.com).
+The [gathered analytics data](https://plausible.jlucke.com/jlucke.com) is available publicly.
 
 ### Performance Metrics
 
@@ -93,4 +93,4 @@ That said, all of these costs I've had before making this website already. So th
 
 Overall, I'm quite happy with the outcome. No I just have to fill the site with more content, starting with this first blog post.
 
-The source code is available [here](https://github.com/JacquesLucke/jlucke.com).
+The [source code](https://github.com/JacquesLucke/jlucke.com) is available.

@@ -20,7 +20,6 @@
 
     --color-normal: #111111;
     --color-muted: #575757;
-    --color-link-normal: #1f4475;
 
     --font-sans: "Lato", sans-serif;
     --font-serif: "Source Serif Pro", serif;
@@ -33,10 +32,5 @@
 
     --color-normal: #e0e0e0;
     --color-muted: #a6a6a6;
-    --color-link-normal: #cdd5ff;
   }
-}
-
-p > a {
-  color: var(--color-link-normal);
 }

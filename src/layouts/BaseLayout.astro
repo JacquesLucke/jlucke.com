@@ -5,6 +5,7 @@ import Footer from "../components/Footer.astro";
 import MainHorizontalLine from "../components/MainHorizontalLine.astro";
 import profilePicture from "../images/profile_picture.jpg";
 import { getImage } from "astro:assets";
+import ImagePopup from "../components/ImagePopup.astro";
 
 const { title, description } = Astro.props;
 
@@ -48,5 +49,7 @@ const favicon = await getImage({
       <MainHorizontalLine />
       <Footer />
     </div>
+    <ImagePopup />
+    <script src="/src/scripts/popup_images.ts"></script>
   </body>
 </html>

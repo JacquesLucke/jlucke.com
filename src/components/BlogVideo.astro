@@ -3,7 +3,7 @@ const { src } = Astro.props;
 ---
 
 <div class="flex justify-center">
-  <video controls width={300} class="my-2 rounded">
+  <video controls width={300} class="my-2 rounded" preload="none">
     <source src={src} />
   </video>
 </div>

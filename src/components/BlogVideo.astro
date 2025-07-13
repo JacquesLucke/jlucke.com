@@ -1,12 +1,19 @@
 ---
 import { getImage } from "astro:assets";
+import { loadImage, loadVideo } from "../scripts/asset_load";
 
-const { thumbnail, src } = Astro.props;
+interface Props {
+  src: string;
+  alt: string;
+}
+
+const { src } = Astro.props;
 
 const thumbnailImage = await getImage({
-  src: thumbnail,
+  src: await loadImage(src + ".thumbnail.jpg"),
+  format: "webp",
+  width: 300,
   quality: 50,
-  width: 600,
 });
 ---
 
@@ -18,6 +25,6 @@ const thumbnailImage = await getImage({
     preload="none"
     poster={thumbnailImage.src}
   >
-    <source src={src} />
+    <source src={await loadVideo(src)} />
   </video>
 </div>

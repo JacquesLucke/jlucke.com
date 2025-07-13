@@ -2,15 +2,18 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import RecentPostCard from "../components/RecentPostCard.astro";
 import {
-  getPublicBlogPosts,
+  getDraftBlogPosts,
   sortPostsMostRecentFirst,
 } from "../scripts/blog_posts";
 
-let posts = await getPublicBlogPosts();
+let posts = await getDraftBlogPosts();
 sortPostsMostRecentFirst(posts);
 ---
 
-<BaseLayout title="Blog by Jacques" description="Overview over the blog posts">
+<BaseLayout
+  title="Drafts by Jacques"
+  description="Overview over the draft blog posts"
+>
   {
     posts.map((post) => (
       <RecentPostCard frontmatter={post.data} url={`/blog/${post.id}`} />

@@ -1,10 +1,14 @@
 import { getCollection, type CollectionEntry } from "astro:content";
 
-export async function getShowableBlogPosts() {
+export async function getPublicBlogPosts() {
   let posts = await getCollection("blog");
-  if (import.meta.env.PROD) {
-    posts = posts.filter((post) => post.data.status === "published");
-  }
+  posts = posts.filter((post) => post.data.status === "published");
+  return posts;
+}
+
+export async function getDraftBlogPosts() {
+  let posts = await getCollection("blog");
+  posts = posts.filter((post) => post.data.status === "draft");
   return posts;
 }
 

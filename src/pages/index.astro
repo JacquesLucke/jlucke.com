@@ -10,11 +10,11 @@ import mainImagePhotography from "../images/main/macro.jpg";
 import mainImageDevelopment from "../images/main/dev_meeting.png";
 import profilePicture from "../images/profile_picture.jpg";
 import {
-  getShowableBlogPosts,
+  getPublicBlogPosts,
   sortPostsMostRecentFirst,
 } from "../scripts/blog_posts";
 
-const allPosts = await getShowableBlogPosts();
+const allPosts = await getPublicBlogPosts();
 sortPostsMostRecentFirst(allPosts);
 const recentPosts = allPosts.slice(0, 3);
 ---

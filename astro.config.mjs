@@ -1,6 +1,8 @@
 // @ts-check
 import { defineConfig } from "astro/config";
 import rehypeAddClasses from "rehype-add-classes";
+import rehypeAutolinkHeadings from "rehype-autolink-headings";
+import rehypeSlug from "rehype-slug";
 
 import tailwindcss from "@tailwindcss/vite";
 
@@ -15,7 +17,16 @@ export default defineConfig({
   },
 
   markdown: {
-    rehypePlugins: [[rehypeAddClasses, {}]],
+    rehypePlugins: [
+      [rehypeAddClasses, {}],
+      [rehypeSlug, {}],
+      [
+        rehypeAutolinkHeadings,
+        {
+          behavior: "wrap",
+        },
+      ],
+    ],
   },
 
   integrations: [mdx()],

@@ -1,10 +1,13 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import RecentPostCard from "../components/RecentPostCard.astro";
-import { getShowableBlogPosts } from "../scripts/blog_posts";
+import {
+  getShowableBlogPosts,
+  sortPostsMostRecentFirst,
+} from "../scripts/blog_posts";
 
 let posts = await getShowableBlogPosts();
-posts.sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime());
+sortPostsMostRecentFirst(posts);
 ---
 
 <BaseLayout title="Blog by Jacques" description="Overview over the blog posts">

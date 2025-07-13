@@ -1,0 +1,48 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import {
+  getShowableBlogPosts,
+  sortPostsMostRecentFirst,
+} from "../../scripts/blog_posts";
+import { supportedTags } from "../../content.config";
+import RecentPostCard from "../../components/RecentPostCard.astro";
+
+export async function getStaticPaths() {
+  return supportedTags.map((tag) => ({
+    params: { slug: tag },
+    props: { tag },
+  }));
+}
+
+const { tag } = Astro.props;
+let posts = await getShowableBlogPosts();
+posts = posts.filter((post) => post.data.tags.includes(tag));
+sortPostsMostRecentFirst(posts);
+---
+
+<BaseLayout title={`Tag: ${tag}`}>
+  <div class="px-2 lg:px-0">
+    <h1 class="mt-4 mb-1 text-2xl font-bold">Tag: {tag}</h1>
+    <div class="text-muted mb-6">
+      <a href={`/blog`} class="mr-2 underline">All</a>
+      {
+        supportedTags.map((tag) => (
+          <a href={`/tags/${tag}`} class="mr-2 inline-block underline">
+            {tag}
+          </a>
+        ))
+      }
+    </div>
+  </div>
+  {
+    posts.length > 0 &&
+      posts.map((post) => (
+        <RecentPostCard frontmatter={post.data} url={`/blog/${post.id}`} />
+      ))
+  }
+  {
+    posts.length === 0 && (
+      <div class="px-2 lg:px-0">No posts found for this tag.</div>
+    )
+  }
+</BaseLayout>

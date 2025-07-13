@@ -1,3 +1,5 @@
 Penpot
 Lato
 Fontsource
+BlogPicture
+BlogVideo

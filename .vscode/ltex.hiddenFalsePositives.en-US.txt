@@ -1,2 +1,4 @@
 {"rule":"ENGLISH_WORD_REPEAT_BEGINNING_RULE","sentence":"^\\QI want to have full control over the layout of the website, without starting from a prebuilt theme.\\E$"}
 {"rule":"ENGLISH_WORD_REPEAT_BEGINNING_RULE","sentence":"^\\QI want the website to be small.\\E$"}
+{"rule":"UPPERCASE_SENTENCE_START","sentence":"^\\Qimport { Picture } from \"astro:assets\"; import Image from \"/src/images/bread/good_bread_7.jpg\";\\E$"}
+{"rule":"MORFOLOGIK_RULE_EN_US","sentence":"^\\Qimport { Picture } from \"astro:assets\"; import Image from \"/src/images/bread/good_bread_7.jpg\";\\E$"}

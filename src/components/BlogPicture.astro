@@ -1,0 +1,15 @@
+---
+import { Picture } from "astro:assets";
+
+const { src, alt, quality } = Astro.props;
+---
+
+<div class="flex justify-center">
+  <Picture
+    src={src}
+    alt={alt}
+    width={400}
+    quality={quality}
+    class="my-2 rounded"
+  />
+</div>

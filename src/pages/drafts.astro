@@ -14,6 +14,7 @@ sortPostsMostRecentFirst(posts);
   title="Drafts by Jacques"
   description="Overview over the draft blog posts"
 >
+  <h1 class="mt-4 mb-1 text-2xl font-bold">Drafts</h1>
   {
     posts.map((post) => (
       <RecentPostCard frontmatter={post.data} url={`/blog/${post.id}`} />

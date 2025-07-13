@@ -9,14 +9,15 @@ tags: ["Other"]
 
 import BlogPicture from "/src/components/BlogPicture.astro";
 import BlogVideo from "/src/components/BlogVideo.astro";
-import GoodBread10 from "/src/images/bread/images/good_bread_10.jpg";
-import GoodBread11 from "/src/images/bread/images/good_bread_11.jpg";
-import Video from "/src/images/bread/videos/yeast_timelapse.mp4";
+import goodBread10 from "/src/images/bread/images/good_bread_10.jpg";
+import goodBread11 from "/src/images/bread/images/good_bread_11.jpg";
+import yeastTimelapse from "/src/images/bread/videos/yeast_timelapse.mp4";
+import yeastTimelapseThumbnail from "/src/images/bread/videos/yeast_timelapse_thumbnail.jpg";
 
 In this post I want to share my journey from rarely baking at all to somewhat knowing what I'm doing when it comes to bread baking.
 
-<BlogPicture alt="Image" src={GoodBread10} quality={80} />
-<BlogPicture alt="Image" src={GoodBread11} quality={80} />
+<BlogPicture alt="Image" src={goodBread10} quality={80} />
+<BlogPicture alt="Image" src={goodBread11} quality={80} />
 
 ## How it began
 
@@ -30,7 +31,7 @@ In this post I want to share my journey from rarely baking at all to somewhat kn
 
 ## Timelapse
 
-<BlogVideo src={Video} />
+<BlogVideo src={yeastTimelapse} thumbnail={yeastTimelapseThumbnail} />
 
 - Started on 14th of February 2021.
 - Was never baking much before.

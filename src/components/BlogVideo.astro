@@ -1,9 +1,23 @@
 ---
-const { src } = Astro.props;
+import { getImage } from "astro:assets";
+
+const { thumbnail, src } = Astro.props;
+
+const thumbnailImage = await getImage({
+  src: thumbnail,
+  quality: 50,
+  width: 600,
+});
 ---
 
 <div class="flex justify-center">
-  <video controls width={300} class="my-2 rounded" preload="none">
+  <video
+    controls
+    width={300}
+    class="my-2 rounded"
+    preload="none"
+    poster={thumbnailImage.src}
+  >
     <source src={src} />
   </video>
 </div>

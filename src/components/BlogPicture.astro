@@ -10,10 +10,10 @@ interface Props {
 
 const { src, alt } = Astro.props;
 
-const images = import.meta.glob<{ default: ImageMetadata }>(
-  "/src/images/**/*.{jpg,webp,png,jped}"
+const assets = import.meta.glob<{ default: ImageMetadata }>(
+  "/src/assets/**/*.{jpg,webp,png,jped}"
 );
-if (!images[src]) {
+if (!assets[src]) {
   throw new Error(`Could not find image at ${src}`);
 }
 const srcImage = await loadImage(src);

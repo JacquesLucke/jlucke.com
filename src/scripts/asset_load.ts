@@ -1,6 +1,6 @@
 import type { ImageMetadata } from "astro";
 
-const allAssets = import.meta.glob("/src/images/**/*.{jpg,webp,png,jpeg,mp4}");
+const allAssets = import.meta.glob("/src/assets/**/*.{jpg,webp,png,jpeg,mp4}");
 
 console.log(allAssets);
 

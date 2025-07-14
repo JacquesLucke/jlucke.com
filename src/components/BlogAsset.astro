@@ -1,0 +1,18 @@
+---
+import BlogPicture from "./BlogPicture.astro";
+import BlogVideo from "./BlogVideo.astro";
+
+interface Props {
+  src: string;
+  alt: string;
+}
+
+const { src, alt } = Astro.props;
+
+const is_image =
+  src.endsWith(".jpg") || src.endsWith(".png") || src.endsWith(".webp");
+const is_video = src.endsWith(".mp4");
+---
+
+{is_image && <BlogPicture src={src} alt={alt} />}
+{is_video && <BlogVideo src={src} alt={alt} />}

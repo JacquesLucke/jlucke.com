@@ -1,8 +1,7 @@
 ---
 import { getCollection, render } from "astro:content";
 import BlogPostLayout from "../../layouts/BlogPostLayout.astro";
-import { getPublicBlogPosts } from "../../scripts/blog_posts";
-import BlogPicture from "../../components/BlogPicture.astro";
+import BlogAsset from "../../components/BlogAsset.astro";
 
 export async function getStaticPaths() {
   const posts = await getCollection("blog");
@@ -16,7 +15,7 @@ const { post } = Astro.props;
 const { Content } = await render(post);
 
 const components_override = {
-  img: BlogPicture,
+  img: BlogAsset,
 };
 ---
 

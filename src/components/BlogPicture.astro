@@ -29,6 +29,8 @@ const srcImage = await loadImage(src);
       quality={80}
       class="popup-image mt-2 max-h-80 w-auto cursor-pointer rounded"
       data-popup-src={srcImage.src}
+      data-popup-width={srcImage.width}
+      data-popup-height={srcImage.height}
     />
     {
       description && (

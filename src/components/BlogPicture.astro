@@ -6,9 +6,10 @@ import { loadImage } from "../scripts/asset_load";
 interface Props {
   src: string;
   alt: string;
+  description?: string;
 }
 
-const { src, alt } = Astro.props;
+const { src, alt, description } = Astro.props;
 
 const assets = import.meta.glob<{ default: ImageMetadata }>(
   "/src/assets/**/*.{jpg,webp,png,jped}"
@@ -20,12 +21,19 @@ const srcImage = await loadImage(src);
 ---
 
 <div class="flex justify-center">
-  <Picture
-    src={srcImage}
-    alt={alt}
-    width={400}
-    quality={80}
-    class="popup-image my-2 cursor-pointer rounded"
-    data-popup-src={srcImage.src}
-  />
+  <div class="flex flex-col">
+    <Picture
+      src={srcImage}
+      alt={alt}
+      width={400}
+      quality={80}
+      class="popup-image mt-2 max-h-80 w-auto cursor-pointer rounded"
+      data-popup-src={srcImage.src}
+    />
+    {
+      description && (
+        <div class="text-muted mt-1 text-center text-base">{description}</div>
+      )
+    }
+  </div>
 </div>

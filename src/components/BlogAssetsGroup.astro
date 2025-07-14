@@ -1,0 +1,13 @@
+---
+import BlogAsset from "./BlogAsset.astro";
+
+interface Props {
+  sources: [string, string][];
+}
+
+const { sources } = Astro.props;
+---
+
+<div class="flex flex-row justify-evenly gap-2">
+  {sources.map(([src, alt]) => <BlogAsset src={src} alt={alt} />)}
+</div>

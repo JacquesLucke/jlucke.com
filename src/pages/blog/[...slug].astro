@@ -14,8 +14,12 @@ export async function getStaticPaths() {
 
 const { post } = Astro.props;
 const { Content } = await render(post);
+
+const components_override = {
+  img: BlogPicture,
+};
 ---
 
 <BlogPostLayout post={post}>
-  <Content components={{ img: BlogPicture }} />
+  <Content components={components_override} />
 </BlogPostLayout>

@@ -22,6 +22,7 @@ async function setup() {
 function triggerPopup(imageElem: HTMLImageElement) {
   const alreadyLoadedSrc = imageElem.getAttribute("src")!;
   const highresSrc = imageElem.getAttribute("data-popup-src")!;
+  dialogImageElem.src = "";
   dialogImageElem.src = highresSrc;
   dialogElem.classList.remove("hidden");
   document.body.style.overflow = "hidden";

@@ -14,9 +14,6 @@ async function setup() {
   dialogElem.addEventListener("click", () => {
     closePopup();
   });
-  dialogImageElem.addEventListener("click", (event) => {
-    event.stopPropagation();
-  });
 }
 
 function triggerPopup(imageElem: HTMLImageElement) {

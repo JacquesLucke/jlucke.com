@@ -2,6 +2,7 @@
 import { getCollection, render } from "astro:content";
 import BlogPostLayout from "../../layouts/BlogPostLayout.astro";
 import { getPublicBlogPosts } from "../../scripts/blog_posts";
+import BlogPicture from "../../components/BlogPicture.astro";
 
 export async function getStaticPaths() {
   const posts = await getCollection("blog");
@@ -16,5 +17,5 @@ const { Content } = await render(post);
 ---
 
 <BlogPostLayout post={post}>
-  <Content />
+  <Content components={{ img: BlogPicture }} />
 </BlogPostLayout>

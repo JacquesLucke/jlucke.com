@@ -2,6 +2,7 @@
 import type { CollectionEntry } from "astro:content";
 import { formatDate } from "../scripts/date_formatting";
 import BaseLayout from "./BaseLayout.astro";
+import { loadImage } from "../scripts/asset_load";
 
 interface Props {
   post: CollectionEntry<"blog">;
@@ -10,9 +11,24 @@ interface Props {
 const { post } = Astro.props;
 const frontmatter = post.data;
 const blameUrl = `https://github.com/JacquesLucke/jlucke.com/blame/main/${post.filePath}`;
+
+const previewImage = frontmatter.preview
+  ? await loadImage(frontmatter.preview)
+  : null;
 ---
 
 <BaseLayout title={frontmatter.title} description={frontmatter.description}>
+  <meta property="og:title" content={frontmatter.title} slot="extra_meta" />
+  <meta
+    property="og:description"
+    content={frontmatter.description}
+    slot="extra_meta"
+  />
+  {
+    previewImage && (
+      <meta property="og:image" content={previewImage.src} slot="extra_meta" />
+    )
+  }
   <div class="mx-auto max-w-[700px] px-2">
     <h1 class="mt-6 mb-1 text-3xl font-bold">
       {frontmatter.title}

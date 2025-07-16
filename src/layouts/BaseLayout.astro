@@ -24,6 +24,7 @@ const favicon = await getImage({
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
     <meta name="description" content={description} />
+    <slot name="extra_meta" />
     <title>{title}</title>
 
     <script is:inline>

@@ -7,3 +7,6 @@ WRO
 RoboMission
 Werkstatt
 Westfalenhalle
+Ente
+json
+VSCode

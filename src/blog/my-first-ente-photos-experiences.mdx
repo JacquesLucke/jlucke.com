@@ -1,0 +1,60 @@
+---
+title: Transitioning to and extending Ente Photos
+author: Jacques Lucke
+description: My first experiences using and customizing Ente Photos.
+pubDate: 2025-06-20
+status: published
+tags: ["Development", "Photography"]
+---
+
+I recently transitioned from Google Photos to [Ente Photos](https://github.com/ente-io/ente). I was occasionally looking for a more privacy-friendly alternative for Google Photos for a while already, but a recent warning that my storage is almost full sped up the process.
+
+## Transition
+
+Ente was not new to me, but I didn't follow its development closely. When checking again, I was happy to see that they also [open sourced their server](https://ente.io/blog/open-sourcing-our-server/) now making Ente fully open source. This made them a much more interesting option to me.
+
+The main features that drew me into Ente are its open source nature, end-to-end encryption and its availability on mobile, web and desktop. While I want to be able to self-host, I didn't actually want to self-host my photos. I'm happy to pay some money to people to deal with the pain points that come with that. Their pricing for that seems very fair, especially considering the family sharing plan.
+
+The transition from Google Photos went mostly well. All files came along I think, just a few albums got lost in the process. I'm not entirely sure what caused that exactly. I'll have to recreate them eventually.
+
+It being end-to-end encrypted also made me more comfortable to use it to back up many older photos I have on various hard drives. Overall, my uploaded library is 280GB large now.
+
+## Extending Ente Locally
+
+As an open source developer myself, I was curious to try how easy or hard it would be to extend the web, desktop or mobile app with my own needs. If I wouldn't be able to do that, using Ente would be less of an interesting option for me. Luckily, working with the Ente code base was quite straight forward.
+
+I've never worked in a larger [React](https://react.dev/) or [Flutter](https://flutter.dev/) code base, but was still able to set everything up in an evening and then was able to implement my first features the following evening. Overall, I was quite impressed by the code base.
+
+It was also nice to see that my locally modified Ente builds easily worked with my photo library on their storage.
+
+### Batch Album Rename
+
+One annoying thing initially was to rename all the hundreds of albums in Ente. I wanted the names to be a bit more consistent. Renaming everything one by one was kind of annoying in the UI.
+
+To solve this I built a [small script](https://github.com/ente-io/ente/compare/main...JacquesLucke:ente:collection-batch-editing) that exports all album names in a simple .json file that could be edited in VSCode and loaded back into Ente to update everything at once.
+
+### Album Subsets
+
+Next, I wanted to make it easier to create albums that are a subset of other albums. A typical example is when I have hundreds of photos of some trip but need to filter that down to a smaller set that's more convenient to show to others.
+
+The solution I came up with is to set the new album as "reference album" and to then show a checkbox in each photo indicating whether it is in the reference album or not.
+
+This feature is available as [proposal on the Ente GitHub](https://github.com/ente-io/ente/discussions/6122) page.
+
+![Album Subsets Demo](/src/assets/ente/album_subsets.mp4)
+
+## Contributing Back
+
+While the features above are nice, they are probably somewhat niche and hard to get into the official version of Ente. That said, I did find a couple bugs while using the app that I could fix. My pull requests for these fixes were approved and merged quite quickly:
+
+- [Close input dialog after album creation.](https://github.com/ente-io/ente/pull/6148)
+- [Trim whitespace from search query.](https://github.com/ente-io/ente/pull/6153)
+- [Trim whitespace from new album name.](https://github.com/ente-io/ente/pull/6181)
+- [Deselect albums with back navigation in second tab.](https://github.com/ente-io/ente/pull/6182)
+- [Deselect albums with back navigation in albums list.](https://github.com/ente-io/ente/pull/6183)
+
+Getting such small fixes in was easy, but I'm not sure if there is a good way for developers from the outside to contribute features or be part of design discussions. I don't blame them though, it's a tricky problem that we struggle with at Blender too.
+
+## Conclusion
+
+Overall, my first impression of Ente is excellent in almost every aspect (the exception being the lost albums during the transition). I'm happy to be using a service now that I can extend as needed, and that I feel comfortable using, especially when dealing with photos of others.

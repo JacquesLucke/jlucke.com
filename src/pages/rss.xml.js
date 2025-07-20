@@ -1,10 +1,12 @@
 import rss from "@astrojs/rss";
 
-import { getCollection } from "astro:content";
-import { sortPostsMostRecentFirst } from "../scripts/blog_posts";
+import {
+  getPublicBlogPosts,
+  sortPostsMostRecentFirst,
+} from "../scripts/blog_posts";
 
 export async function GET(context) {
-  const posts = await getCollection("blog");
+  const posts = await getPublicBlogPosts();
   sortPostsMostRecentFirst(posts);
 
   return rss({

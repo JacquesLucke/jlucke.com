@@ -3,3 +3,7 @@ Lato
 Fontsource
 BlogPicture
 BlogVideo
+WRO
+RoboMission
+Werkstatt
+Westfalenhalle

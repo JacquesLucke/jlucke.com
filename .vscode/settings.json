@@ -3,5 +3,6 @@
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "[astro]": {
     "editor.formatOnSave": true
-  }
+  },
+  "editor.scrollbar.vertical": "hidden"
 }

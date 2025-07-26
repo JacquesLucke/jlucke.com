@@ -2,3 +2,4 @@
 {"rule":"ENGLISH_WORD_REPEAT_BEGINNING_RULE","sentence":"^\\QI want the website to be small.\\E$"}
 {"rule":"UPPERCASE_SENTENCE_START","sentence":"^\\Qimport { Picture } from \"astro:assets\"; import Image from \"/src/images/bread/good_bread_7.jpg\";\\E$"}
 {"rule":"MORFOLOGIK_RULE_EN_US","sentence":"^\\Qimport { Picture } from \"astro:assets\"; import Image from \"/src/images/bread/good_bread_7.jpg\";\\E$"}
+{"rule":"MISSING_COMMA_AFTER_INTRODUCTORY_PHRASE","sentence":"^\\QBesides making it trivial to support them in the future in case your life situation changes, it also makes you more aware of all the good projects around you.\\E$"}

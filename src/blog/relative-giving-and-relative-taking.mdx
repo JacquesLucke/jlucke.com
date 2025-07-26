@@ -7,6 +7,8 @@ status: draft
 tags: ["Funding"]
 ---
 
+import BlogCollapsibleSection from "/src/components/BlogCollapsibleSection.astro";
+
 Imagine you come across a project that improves your or other peoples life. It may be a content creator, an open source project, a local theater group, a charity or anything else. What do you do?
 
 You probably consider supporting the project ensuring it keeps on existing or can even grow. Great! Unfortunately, that's where most of the time most people stop, including myself. That's not surprising given the difficulty of deciding whether you can afford it on the spot. What makes matters worse is that this decision becomes harder every time you choose to support a project because your overall budget is smaller.
@@ -51,9 +53,11 @@ There are many more interesting aspects of having such a platform. Some of those
 
 Obviously, actually building such a platform is a huge undertaking requiring many skills and resources I don't have. So for now, I'm just putting this idea out there to spark interest and discussion. My hope is that such a platform will exist eventually, whether I'm involved in it or not.
 
-## More Aspects
+## Further Thoughts
 
-### What is considered a public benefit project here?
+This section has some thoughts on various aspects related to the described platform.
+
+<BlogCollapsibleSection title="What is considered a public benefit project here?">
 
 Pretty hard to come up with a rule that always applies. This is my best definition so far: A project that benefits the same people even if all their income would come from different people.
 
@@ -61,9 +65,11 @@ This implies that no one gets a personal benefit by being the one paying for it 
 
 It also implies that for-profit projects (like a self-employed content creator) is seen as a public benefit project here, as long as one does not buy exclusive content with the payment.
 
-### How to overcome the challenges of the network effect?
+</BlogCollapsibleSection>
 
-"Network effect" describes the phenomenon by which value of a platform depends on the number of users. A typical example is a chat app. The best chat app in the world is worth nothing if no one uses it.
+<BlogCollapsibleSection title="How to overcome the challenges of the network effect?">
+
+_Network effect_ describes the phenomenon by which value of a platform depends on the number of users. A typical example is a chat app. The best chat app in the world is worth nothing if no one uses it.
 
 The same applies to the platform described above. If there are no or very few projects on there, users don't have much of a benefit from using it because they still have to donate through other means. For projects the platform is not helping either when there is no one spending money on it.
 
@@ -71,23 +77,31 @@ Fortunately, this seems solvable by starting out inviting popular projects to th
 
 This can start a positive feedback loop. These projects are interested in getting people to use the platform because it can be cheaper and feels better. After that, the users are encouraging more projects to use the platform because it simplifies managing their budget.
 
-### How to handle tax breaks?
+</BlogCollapsibleSection>
+
+<BlogCollapsibleSection title="How to handle tax breaks?">
 
 In most countries there are mechanism to get tax breaks when donating to certain projects. I think the platform will have to be able to handle the complexity of that. When people are supporting different projects only some of which can be deducted from taxes, the platform has to be able to tell them how much they can deduct. Ideally, it can also provide the donation receipts automatically.
 
 Without this, donating through the platform could be more annoying than donating directly, reducing the value of the platform.
 
-### Fair funding of local projects in poorer communities?
+</BlogCollapsibleSection>
+
+<BlogCollapsibleSection title="Fair funding of local projects in poorer communities?">
 
 One problem with funding local projects exclusively by the people living there is that richer communities get better public benefit projects than those in poorer communities, even though the latter would likely benefit more.
 
 _Relative taking_ is an attempt to solve this to some degree. All local projects could pay forward some of their income to many/all similar projects. This naturally leads to more funding going to projects that don't get much funding otherwise. People donating their money still know that they are primarily investing in the local community while also benefiting everyone else.
 
-### How does this affect how projects ask for money?
+</BlogCollapsibleSection>
+
+<BlogCollapsibleSection title="How does this affect how projects ask for money?">
 
 _Relative giving_ not only benefits people spending money but also the projects receiving money. That's because it's much easier for them to encourage you to make them part of your budget, instead of trying to make you spend extra money on them, you might not have.
 
-### What kinds of projects should everyone support?
+</BlogCollapsibleSection>
+
+<BlogCollapsibleSection title="What kinds of projects should everyone support?">
 
 I can currently think of three main categories of public benefit projects, there may be more though:
 
@@ -97,25 +111,33 @@ I can currently think of three main categories of public benefit projects, there
 
 I'm not sure how everyone's budget should ideally be split up between these categories, but it seems like a good idea to encourage people to consider all of them.
 
-### How to find good charities to donate to?
+</BlogCollapsibleSection>
+
+<BlogCollapsibleSection title="How to find good charities to donate to?">
 
 Choosing specific charities to donate to can be tricky given that you usually don't see their impact directly. Of course one can just donate to the biggest well known charities, but there might be smaller ones that need support too. Partially, this could be solved with _relative taking_ but maybe not enough.
 
 Fortunately, there are already organizations evaluating charities for their effectiveness. One could imagine these organizations setting up "funds" on the platform and all money donated there is automatically distributed to the charities they found to be good.
 
-### What if I don't have any extra money to give away currently?
+</BlogCollapsibleSection>
+
+<BlogCollapsibleSection title="What if I don't have any extra money to give away currently?">
 
 No one expects people in financially unstable situations to just give away money. However, this is where _relative giving_ shines. It can be a good idea to just collect projects you'd want to support even if you don't have the means to actually support them right now.
 
 Besides making it trivial to support them in the future in case your life situation changes, it also makes you more aware of all the good projects around you.
 
-### Why give money away when I can save or invest it?
+</BlogCollapsibleSection>
+
+<BlogCollapsibleSection title="Why give money away when I can save or invest it?">
 
 That's a personal decision of course. Personally, I'd rather live in a society with good public benefit projects than having a lot of money in a society that does not have such good projects.
 
 I see giving money away as a kind of investment. Money given away is not invested in my future wealth but in my happiness and that of others around me and in the world.
 
-### Giving as part of budget planning?
+</BlogCollapsibleSection>
+
+<BlogCollapsibleSection title="Giving as part of budget planning?">
 
 A benefit of _relative giving_ is that the decision how much to spend is decoupled from the decision on what to spend the money on. This makes it possible to integrate this decision into the normal budget planning that many households do.
 
@@ -123,8 +145,12 @@ All people I talked to do donate but typically in a very unstructured and ad-hoc
 
 This could encourage people to spend some percentage of the money they would otherwise save to projects they care about. It feels like this can also improve peoples relation to money because they are showing themselves that they have enough to live a good life because they can afford to support other projects regularly voluntarily.
 
-### Single Time Donations
+</BlogCollapsibleSection>
+
+<BlogCollapsibleSection title="How to handle single time donations?">
 
 Most projects benefit more from recurring than single-time donations because of increased reliability of the income. By being able to change the total spending budget in a single place at any time, many of the downsides of recurring payments are less bad.
 
 That said, certain projects are short-lived and thus a single time donation works better. For example, a single festival or a disaster recovery operation. Such payments could also be done through the platform and can even still be within the normal budget. For example, you could decide that 50% of your money goes to a specific project in a specific month. Then the remaining projects just get less this month, but you don't have to spend extra if you can't afford to.
+
+</BlogCollapsibleSection>

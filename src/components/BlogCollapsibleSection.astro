@@ -1,0 +1,36 @@
+---
+interface Props {
+  title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<div class="blog-collapsible-section my-2 pt-2 pb-1">
+  <div class="flex items-start">
+    <div class="collapse-icon inline-block scale-50 pr-1 text-xl transition">
+      ▶
+    </div>
+    <div>
+      <div
+        class="blog-collapsible-section-title cursor-pointer text-xl select-none"
+      >
+        {title}
+      </div>
+      <div class="blog-collapsible-section-body hidden"><slot /></div>
+    </div>
+  </div>
+</div>
+
+<script>
+  const sections = document.querySelectorAll(".blog-collapsible-section");
+  for (const section of sections) {
+    const title = section.querySelector(".blog-collapsible-section-title")!;
+    const icon = section.querySelector(".collapse-icon")!;
+    const body = section.querySelector(".blog-collapsible-section-body")!;
+    title.addEventListener("click", (event) => {
+      body.classList.toggle("hidden");
+      icon.classList.toggle("rotate-90");
+    });
+  }
+</script>

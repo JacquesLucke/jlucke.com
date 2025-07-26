@@ -67,12 +67,16 @@ const previewImage = frontmatter.preview
     line-height: 2rem;
   }
 
+  .blog-prose-style strong {
+    font-weight: bold;
+  }
+
   .blog-prose-style p {
     margin-top: 0.5rem;
     margin-bottom: 0.5rem;
   }
 
-  .blog-prose-style ul {
+  .blog-prose-style :is(ul, ol) {
     list-style-type: disc;
     margin-left: 1.25rem;
   }

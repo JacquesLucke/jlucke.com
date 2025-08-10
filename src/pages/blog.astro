@@ -12,8 +12,8 @@ sortPostsMostRecentFirst(posts);
 ---
 
 <BaseLayout title="Blog by Jacques" description="Overview over the blog posts">
-  <h1 class="mt-4 mb-1 text-2xl font-bold">Blog Posts</h1>
-  <div class="text-muted mb-4">
+  <h1 class="mt-4 mb-1 px-2 text-2xl font-bold lg:px-0">Blog Posts</h1>
+  <div class="text-muted mb-4 px-2 lg:px-0">
     {
       supportedTags.map((tag) => (
         <a href={`/tags/${tag}`} class="mr-2 inline-block underline">

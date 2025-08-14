@@ -86,7 +86,7 @@
 
   <div
     id="watercolor-box-preview"
-    class="h-40 w-full bg-contain bg-center bg-no-repeat px-6"
+    class="h-50 w-full bg-contain bg-center bg-no-repeat px-6"
   >
   </div>
   Below
@@ -136,14 +136,14 @@
     floorClearance: number;
   }
 
-  interface Point {
+  interface Vec2 {
     x: number;
     y: number;
   }
 
   interface Line {
-    a: Point;
-    b: Point;
+    a: Vec2;
+    b: Vec2;
   }
 
   interface BoundBox {
@@ -177,7 +177,7 @@
     const params = getParams();
 
     let lines: Line[] = [];
-    lines.push(...createSide(params));
+    lines.push(...createSideMulti(params, 4));
     console.log(lines);
 
     const bounds = findLinesBoundingBox(lines);
@@ -250,7 +250,7 @@
   }
 
   function createSampleRow(p: WaterBoxParams): Line[] {
-    const points: Point[] = [];
+    const points: Vec2[] = [];
     const add = (x: number, y: number) => {
       points.push({ x, y });
     };
@@ -283,7 +283,7 @@
   }
 
   function createBottom(p: WaterBoxParams): Line[] {
-    const points: Point[] = [];
+    const points: Vec2[] = [];
     const add = (x: number, y: number) => {
       points.push({ x, y });
     };
@@ -329,7 +329,7 @@
   }
 
   function createFront(p: WaterBoxParams): Line[] {
-    const points: Point[] = [];
+    const points: Vec2[] = [];
     const add = (x: number, y: number) => {
       points.push({ x, y });
     };
@@ -379,7 +379,7 @@
   }
 
   function createSide(p: WaterBoxParams): Line[] {
-    const outerPoints: Point[] = [];
+    const outerPoints: Vec2[] = [];
     const add = (x: number, y: number) => {
       outerPoints.push({ x, y });
     };
@@ -449,7 +449,7 @@
     const lines = pointsToLines(outerPoints);
 
     for (const x of innerStartXs) {
-      let rectPoints: Point[] = [];
+      let rectPoints: Vec2[] = [];
       const add = (x: number, y: number) => {
         rectPoints.push({ x, y });
       };
@@ -464,7 +464,63 @@
     return lines;
   }
 
-  function pointsToLines(points: Point[]): Line[] {
+  function createSideMulti(p: WaterBoxParams, count: number): Line[] {
+    const referenceLines = createSide(p);
+    const lines = [];
+    for (let i = 0; i < count; i++) {
+      let offset = { x: 0, y: i * (p.height - p.heightOverlap) };
+      lines.push(...offsetLines(referenceLines, offset));
+    }
+    return lines;
+  }
+
+  function createFrontMulti(p: WaterBoxParams, count: number): Line[] {
+    const referenceLines = createFront(p);
+    const lines = [];
+    for (let i = 0; i < count; i++) {
+      let offset = { x: 0, y: i * (p.height - p.heightOverlap) };
+      lines.push(...offsetLines(referenceLines, offset));
+    }
+    return lines;
+  }
+
+  function createSampleRowMulti(p: WaterBoxParams, count: number): Line[] {
+    const referenceLines = createSampleRow(p);
+    const lines = [];
+    for (let i = 0; i < count; i++) {
+      let offset = { x: i * p.sampleWidth, y: 0 };
+      lines.push(...offsetLines(referenceLines, offset));
+    }
+    return lines;
+  }
+
+  function createBottomMulti(p: WaterBoxParams, count: number): Line[] {
+    const referenceLines = createBottom(p);
+    const bounds = findLinesBoundingBox(referenceLines);
+    const lines = [];
+    for (let i = 0; i < count; i++) {
+      let offset = { x: 0, y: i * (bounds.yMax - bounds.yMin) };
+      lines.push(...offsetLines(referenceLines, offset));
+    }
+    return lines;
+  }
+
+  function offsetLines(lines: Line[], offset: Vec2): Line[] {
+    const result = [];
+    for (const line of lines) {
+      result.push({
+        a: offsetVec2(line.a, offset),
+        b: offsetVec2(line.b, offset),
+      });
+    }
+    return result;
+  }
+
+  function offsetVec2(v: Vec2, offset: Vec2): Vec2 {
+    return { x: v.x + offset.x, y: v.y + offset.y };
+  }
+
+  function pointsToLines(points: Vec2[]): Line[] {
     const lines = [];
     for (let i = 0; i < points.length - 1; i++) {
       const start = points[i];

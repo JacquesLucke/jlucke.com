@@ -93,8 +93,7 @@
 </div>
 
 <script>
-  import { createAnimationScope } from "astro:transitions";
-  import { getLineAndCharacterOfPosition } from "typescript";
+  import { registerThemeToggleListener } from "../scripts/dark_mode";
 
   const thicknessWoodElem = document.getElementById(
     "watercolor-box-generator-material-thickness-wood"
@@ -187,15 +186,24 @@
     const svgHeight = bounds.yMax - bounds.yMin;
 
     const svgLines = [];
+    const color = window
+      .getComputedStyle(watercolorBoxPreview)
+      .getPropertyValue("--color-muted");
     for (let line of lines) {
-      svgLines.push(createCutLine(line));
+      svgLines.push(createCutLine(line, color));
     }
+
+    const margin = 1;
 
     const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
     svg.setAttribute("xmlns", "http://www.w3.org/2000/svg");
-    svg.setAttribute("viewBox", `0 0 ${svgWidth} ${svgHeight}`);
+    svg.setAttribute(
+      "viewBox",
+      `-${margin} -${margin} ${svgWidth + 2 * margin} ${svgHeight + 2 * margin}`
+    );
     svg.setAttribute("width", `${svgWidth}mm`);
     svg.setAttribute("height", `${svgHeight}mm`);
+    svg.setAttribute("shape-rendering", "crispEdges");
     for (let line of svgLines) {
       svg.appendChild(line);
     }
@@ -466,7 +474,7 @@
     return lines;
   }
 
-  function createCutLine(line: Line) {
+  function createCutLine(line: Line, color: string) {
     const svgLine = document.createElementNS(
       "http://www.w3.org/2000/svg",
       "line"
@@ -475,7 +483,7 @@
     svgLine.setAttribute("y1", line.a.y.toString());
     svgLine.setAttribute("x2", line.b.x.toString());
     svgLine.setAttribute("y2", line.b.y.toString());
-    svgLine.setAttribute("stroke", "red");
+    svgLine.setAttribute("stroke", color);
     svgLine.setAttribute("stroke-width", "1");
     svgLine.setAttribute("vector-effect", "non-scaling-stroke");
     return svgLine;
@@ -493,6 +501,8 @@
       updatePreview();
     });
   }
+
+  registerThemeToggleListener(updatePreview);
 
   updatePreview();
 </script>

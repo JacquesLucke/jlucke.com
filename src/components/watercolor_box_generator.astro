@@ -178,7 +178,6 @@
 
     let lines: Line[] = [];
     lines.push(...createSideMulti(params, 4));
-    console.log(lines);
 
     const bounds = findLinesBoundingBox(lines);
 
@@ -207,7 +206,6 @@
     for (let line of svgLines) {
       svg.appendChild(line);
     }
-    console.log(svg);
 
     const svgString = svg.outerHTML;
     const dataUrl = `data:image/svg+xml;base64,${btoa(svgString)}`;

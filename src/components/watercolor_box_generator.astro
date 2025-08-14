@@ -130,6 +130,10 @@
     overshoot: number;
     innerStabilityWidth: number;
     floorSliceWidth: number;
+    frontSliceWidth: number;
+    height: number;
+    heightOverlap: number;
+    verticalHolder: number;
   }
 
   interface Point {
@@ -161,6 +165,10 @@
       overshoot: 5,
       innerStabilityWidth: 3,
       floorSliceWidth: 10,
+      frontSliceWidth: 10,
+      height: 24,
+      heightOverlap: 3,
+      verticalHolder: 6,
     };
   }
 
@@ -168,7 +176,7 @@
     const params = getParams();
 
     let lines: Line[] = [];
-    lines.push(...createBottom(params));
+    lines.push(...createFront(params));
     console.log(lines);
 
     const bounds = findLinesBoundingBox(lines);
@@ -310,6 +318,56 @@
     return pointsToLines(points);
   }
 
+  function createFront(p: WaterBoxParams): Line[] {
+    const points: Point[] = [];
+    const add = (x: number, y: number) => {
+      points.push({ x, y });
+    };
+
+    const x0 = 0;
+    const x1 = p.overshoot;
+    const x2 = x1 + p.woodThickness;
+    const x3 = x2 + (p.rowLength - p.frontSliceWidth) / 2;
+    const x4 = x3 + p.frontSliceWidth;
+    const x5 = x4 + (p.rowLength - p.frontSliceWidth) / 2;
+    const x6 = x5 + p.woodThickness;
+    const x7 = x6 + p.overshoot;
+
+    const y0 = 0;
+    const y1 = p.heightOverlap;
+    const y2 = y1 + p.verticalHolder;
+    const y3 = p.height - p.heightOverlap;
+    const y4 = p.height;
+
+    add(x0, y1);
+    add(x1, y1);
+    add(x1, y0);
+    add(x3, y0);
+    add(x3, y1);
+    add(x4, y1);
+    add(x4, y0);
+    add(x6, y0);
+    add(x6, y1);
+    add(x7, y1);
+    add(x7, y4);
+    add(x6, y4);
+    add(x6, y2);
+    add(x5, y2);
+    add(x5, y3);
+    add(x4, y3);
+    add(x4, y4);
+    add(x3, y4);
+    add(x3, y3);
+    add(x2, y3);
+    add(x2, y2);
+    add(x1, y2);
+    add(x1, y4);
+    add(x0, y4);
+    add(x0, y1);
+
+    return pointsToLines(points);
+  }
+
   function pointsToLines(points: Point[]): Line[] {
     const lines = [];
     for (let i = 0; i < points.length - 1; i++) {
@@ -331,6 +389,7 @@
     svgLine.setAttribute("y2", line.b.y.toString());
     svgLine.setAttribute("stroke", "red");
     svgLine.setAttribute("stroke-width", "1");
+    svgLine.setAttribute("vector-effect", "non-scaling-stroke");
     return svgLine;
   }
 

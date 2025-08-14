@@ -134,6 +134,7 @@
     height: number;
     heightOverlap: number;
     verticalHolder: number;
+    floorClearance: number;
   }
 
   interface Point {
@@ -169,6 +170,7 @@
       height: 24,
       heightOverlap: 3,
       verticalHolder: 6,
+      floorClearance: 3,
     };
   }
 
@@ -176,7 +178,7 @@
     const params = getParams();
 
     let lines: Line[] = [];
-    lines.push(...createFront(params));
+    lines.push(...createSide(params));
     console.log(lines);
 
     const bounds = findLinesBoundingBox(lines);
@@ -366,6 +368,92 @@
     add(x0, y1);
 
     return pointsToLines(points);
+  }
+
+  function createSide(p: WaterBoxParams): Line[] {
+    const outerPoints: Point[] = [];
+    const add = (x: number, y: number) => {
+      outerPoints.push({ x, y });
+    };
+
+    let innerStartXs = [];
+
+    const x0 = 0;
+    const x1 = p.overshoot;
+    const x2 = x1 + p.woodThickness;
+    const x3 = x2 + p.innerStabilityWidth;
+
+    const y0 = 0;
+    const y1 = p.heightOverlap;
+    const y2 = y1 + p.woodThickness + p.glassThickness;
+    const y6 = p.height;
+    const y5 = y6 - p.heightOverlap;
+    const y4 = y5 - p.floorClearance;
+    const y3 = y4 - p.woodThickness;
+
+    add(x0, y1);
+    add(x1, y1);
+    add(x1, y2);
+    add(x2, y2);
+    add(x2, y0);
+    add(x3, y0);
+    add(x3, y2);
+    let x = x3;
+    for (let i = 0; i < p.rows; i++) {
+      x += p.holderWidth;
+      add(x, y2);
+      add(x, y1);
+      x += p.sampleWidth - 2.0 * p.holderWidth;
+      add(x, y1);
+      add(x, y2);
+      x += p.holderWidth;
+      innerStartXs.push(x + (p.rowWidth - p.floorSliceWidth) / 2);
+      add(x, y2);
+      add(x, y0);
+      x += p.rowWidth;
+      add(x, y0);
+      add(x, y2);
+    }
+    x += p.woodThickness;
+    add(x, y2);
+    add(x, y1);
+    x += p.overshoot;
+    add(x, y1);
+    add(x, y6);
+    x -= p.overshoot;
+    add(x, y6);
+    add(x, y5);
+    x -= p.woodThickness;
+    add(x, y5);
+    for (let i = 0; i < p.rows; i++) {
+      x -= p.rowWidth;
+      add(x, y5);
+      add(x, y6);
+      x -= p.sampleWidth;
+      add(x, y6);
+      add(x, y5);
+    }
+    add(x1, y5);
+    add(x1, y6);
+    add(x0, y6);
+    add(x0, y1);
+
+    const lines = pointsToLines(outerPoints);
+
+    for (const x of innerStartXs) {
+      let rectPoints: Point[] = [];
+      const add = (x: number, y: number) => {
+        rectPoints.push({ x, y });
+      };
+      add(x, y3);
+      add(x + p.floorSliceWidth, y3);
+      add(x + p.floorSliceWidth, y4);
+      add(x, y4);
+      add(x, y3);
+      lines.push(...pointsToLines(rectPoints));
+    }
+
+    return lines;
   }
 
   function pointsToLines(points: Point[]): Line[] {

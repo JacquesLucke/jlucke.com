@@ -1,0 +1,351 @@
+---
+
+---
+
+<div>
+  <table class="w-full table-auto">
+    <tr>
+      <td>Rows</td>
+      <td>
+        <input
+          type="number"
+          id="watercolor-box-generator-rows"
+          min="1"
+          max="10"
+          value="3"
+          class="text-right"
+        />
+      </td>
+    </tr>
+    <tr>
+      <td>Wood Thickness</td>
+      <td>
+        <input
+          type="number"
+          id="watercolor-box-generator-material-thickness-wood"
+          min="1"
+          max="10"
+          value="3"
+          class="text-right"
+        /> mm
+      </td>
+    </tr>
+    <tr>
+      <td>Glass Thickness</td>
+      <td>
+        <input
+          type="number"
+          id="watercolor-box-generator-material-thickness-glass"
+          min="1"
+          max="10"
+          value="3"
+          class="text-right"
+        /> mm
+      </td>
+    </tr>
+    <tr>
+      <td>Sample Width</td>
+      <td>
+        <input
+          type="number"
+          id="watercolor-box-generator-sample-width"
+          min="1"
+          max="100"
+          value="20"
+          class="text-right"
+        /> mm
+      </td>
+    </tr>
+    <tr>
+      <td>Row Length</td>
+      <td>
+        <input
+          type="number"
+          id="watercolor-box-generator-row-length"
+          min="1"
+          max="500"
+          value="175"
+          class="text-right"
+        /> mm
+      </td>
+    </tr>
+    <tr>
+      <td>Row Width</td>
+      <td>
+        <input
+          type="number"
+          id="watercolor-box-generator-row-width"
+          min="1"
+          max="500"
+          value="20"
+          class="text-right"
+        /> mm
+      </td>
+    </tr>
+  </table>
+
+  <div
+    id="watercolor-box-preview"
+    class="h-40 w-full bg-contain bg-center bg-no-repeat px-6"
+  >
+  </div>
+  Below
+</div>
+
+<script>
+  import { createAnimationScope } from "astro:transitions";
+  import { getLineAndCharacterOfPosition } from "typescript";
+
+  const thicknessWoodElem = document.getElementById(
+    "watercolor-box-generator-material-thickness-wood"
+  )! as HTMLInputElement;
+  const thicknessGlassElem = document.getElementById(
+    "watercolor-box-generator-material-thickness-glass"
+  )! as HTMLInputElement;
+  const rowsElem = document.getElementById(
+    "watercolor-box-generator-rows"
+  )! as HTMLInputElement;
+  const sampleWidthElem = document.getElementById(
+    "watercolor-box-generator-sample-width"
+  )! as HTMLInputElement;
+  const rowLengthElem = document.getElementById(
+    "watercolor-box-generator-row-length"
+  )! as HTMLInputElement;
+  const rowWidthElem = document.getElementById(
+    "watercolor-box-generator-row-width"
+  )! as HTMLInputElement;
+
+  const watercolorBoxPreview = document.getElementById(
+    "watercolor-box-preview"
+  )! as HTMLDivElement;
+
+  interface WaterBoxParams {
+    woodThickness: number;
+    glassThickness: number;
+    rows: number;
+    sampleWidth: number;
+    rowLength: number;
+    rowWidth: number;
+    holderWidth: number;
+    overshoot: number;
+    innerStabilityWidth: number;
+    floorSliceWidth: number;
+  }
+
+  interface Point {
+    x: number;
+    y: number;
+  }
+
+  interface Line {
+    a: Point;
+    b: Point;
+  }
+
+  interface BoundBox {
+    xMin: number;
+    yMin: number;
+    xMax: number;
+    yMax: number;
+  }
+
+  function getParams(): WaterBoxParams {
+    return {
+      woodThickness: parseFloat(thicknessWoodElem.value),
+      glassThickness: parseFloat(thicknessGlassElem.value),
+      rows: parseInt(rowsElem.value),
+      sampleWidth: parseFloat(sampleWidthElem.value),
+      rowLength: parseFloat(rowLengthElem.value),
+      rowWidth: parseFloat(rowWidthElem.value),
+      holderWidth: 3,
+      overshoot: 5,
+      innerStabilityWidth: 3,
+      floorSliceWidth: 10,
+    };
+  }
+
+  function updatePreview() {
+    const params = getParams();
+
+    let lines: Line[] = [];
+    lines.push(...createBottom(params));
+    console.log(lines);
+
+    const bounds = findLinesBoundingBox(lines);
+
+    const svgWidth = bounds.xMax - bounds.xMin;
+    const svgHeight = bounds.yMax - bounds.yMin;
+
+    const svgLines = [];
+    for (let line of lines) {
+      svgLines.push(createCutLine(line));
+    }
+
+    const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+    svg.setAttribute("xmlns", "http://www.w3.org/2000/svg");
+    svg.setAttribute("viewBox", `0 0 ${svgWidth} ${svgHeight}`);
+    svg.setAttribute("width", `${svgWidth}mm`);
+    svg.setAttribute("height", `${svgHeight}mm`);
+    for (let line of svgLines) {
+      svg.appendChild(line);
+    }
+    console.log(svg);
+
+    const svgString = svg.outerHTML;
+    const dataUrl = `data:image/svg+xml;base64,${btoa(svgString)}`;
+    watercolorBoxPreview.style.backgroundImage = `url(${dataUrl})`;
+  }
+
+  function findLinesBoundingBox(lines: Line[]): BoundBox {
+    let xMin = Number.MAX_VALUE;
+    let yMin = Number.MAX_VALUE;
+    let xMax = Number.MIN_VALUE;
+    let yMax = Number.MIN_VALUE;
+    for (let line of lines) {
+      if (line.a.x < xMin) {
+        xMin = line.a.x;
+      }
+      if (line.a.y < yMin) {
+        yMin = line.a.y;
+      }
+      if (line.b.x < xMin) {
+        xMin = line.b.x;
+      }
+      if (line.b.y < yMin) {
+        yMin = line.b.y;
+      }
+      if (line.a.x > xMax) {
+        xMax = line.a.x;
+      }
+      if (line.a.y > yMax) {
+        yMax = line.a.y;
+      }
+      if (line.b.x > xMax) {
+        xMax = line.b.x;
+      }
+      if (line.b.y > yMax) {
+        yMax = line.b.y;
+      }
+    }
+
+    return { xMin, yMin, xMax, yMax };
+  }
+
+  function createSampleRow(p: WaterBoxParams): Line[] {
+    const points: Point[] = [];
+    const add = (x: number, y: number) => {
+      points.push({ x, y });
+    };
+
+    const x0 = 0;
+    const x1 = p.holderWidth;
+    const x2 = p.sampleWidth - p.holderWidth;
+    const x3 = p.sampleWidth;
+
+    const y0 = 0;
+    const y1 = p.woodThickness;
+    const y2 = p.rowLength + p.woodThickness;
+    const y3 = p.rowLength + 2 * p.woodThickness;
+
+    add(x0, y0);
+    add(x1, y0);
+    add(x1, y1);
+    add(x2, y1);
+    add(x2, y0);
+    add(x3, y0);
+    add(x3, y3);
+    add(x2, y3);
+    add(x2, y2);
+    add(x1, y2);
+    add(x1, y3);
+    add(x0, y3);
+    add(x0, y0);
+
+    return pointsToLines(points);
+  }
+
+  function createBottom(p: WaterBoxParams): Line[] {
+    const points: Point[] = [];
+    const add = (x: number, y: number) => {
+      points.push({ x, y });
+    };
+
+    const x0 = 0;
+    const x1 = p.woodThickness;
+    const x2 = x1 + p.rowLength;
+    const x3 = x2 + p.woodThickness;
+
+    const y0 = 0;
+    const y1 = p.innerStabilityWidth;
+
+    add(x1, y0);
+    add(x2, y0);
+    add(x2, y1);
+    let y = y1;
+    for (let i = 0; i < p.rows; i++) {
+      y += p.sampleWidth;
+      y += (p.rowWidth - p.floorSliceWidth) / 2;
+      add(x2, y);
+      add(x3, y);
+      y += p.floorSliceWidth;
+      add(x3, y);
+      add(x2, y);
+      y += (p.rowWidth - p.floorSliceWidth) / 2;
+      add(x2, y);
+    }
+    add(x1, y);
+    for (let i = 0; i < p.rows; i++) {
+      y -= (p.rowWidth - p.floorSliceWidth) / 2;
+      add(x1, y);
+      add(x0, y);
+      y -= p.floorSliceWidth;
+      add(x0, y);
+      add(x1, y);
+      y -= (p.rowWidth - p.floorSliceWidth) / 2;
+      add(x1, y);
+      y -= p.sampleWidth;
+    }
+    add(x1, y0);
+
+    return pointsToLines(points);
+  }
+
+  function pointsToLines(points: Point[]): Line[] {
+    const lines = [];
+    for (let i = 0; i < points.length - 1; i++) {
+      const start = points[i];
+      const end = points[i + 1];
+      lines.push({ a: start, b: end });
+    }
+    return lines;
+  }
+
+  function createCutLine(line: Line) {
+    const svgLine = document.createElementNS(
+      "http://www.w3.org/2000/svg",
+      "line"
+    );
+    svgLine.setAttribute("x1", line.a.x.toString());
+    svgLine.setAttribute("y1", line.a.y.toString());
+    svgLine.setAttribute("x2", line.b.x.toString());
+    svgLine.setAttribute("y2", line.b.y.toString());
+    svgLine.setAttribute("stroke", "red");
+    svgLine.setAttribute("stroke-width", "1");
+    return svgLine;
+  }
+
+  for (let elem of [
+    thicknessWoodElem,
+    thicknessGlassElem,
+    rowsElem,
+    sampleWidthElem,
+    rowLengthElem,
+    rowWidthElem,
+  ]) {
+    elem.addEventListener("input", function () {
+      updatePreview();
+    });
+  }
+
+  updatePreview();
+</script>

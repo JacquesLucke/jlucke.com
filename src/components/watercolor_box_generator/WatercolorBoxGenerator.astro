@@ -1,88 +1,35 @@
 ---
-
+import CountInput from "./CountInput.astro";
+import MillimeterInput from "./MillimeterInput.astro";
 ---
 
 <div>
-  <table class="w-full table-auto">
-    <tr>
-      <td>Rows</td>
-      <td>
-        <input
-          type="number"
-          id="watercolor-box-generator-rows"
-          min="1"
-          max="10"
-          value="3"
-          class="text-right"
-        />
-      </td>
-    </tr>
-    <tr>
-      <td>Wood Thickness</td>
-      <td>
-        <input
-          type="number"
-          id="watercolor-box-generator-material-thickness-wood"
-          min="1"
-          max="10"
-          value="3"
-          class="text-right"
-        /> mm
-      </td>
-    </tr>
-    <tr>
-      <td>Glass Thickness</td>
-      <td>
-        <input
-          type="number"
-          id="watercolor-box-generator-material-thickness-glass"
-          min="1"
-          max="10"
-          value="3"
-          class="text-right"
-        /> mm
-      </td>
-    </tr>
-    <tr>
-      <td>Sample Width</td>
-      <td>
-        <input
-          type="number"
-          id="watercolor-box-generator-sample-width"
-          min="1"
-          max="100"
-          value="20"
-          class="text-right"
-        /> mm
-      </td>
-    </tr>
-    <tr>
-      <td>Row Length</td>
-      <td>
-        <input
-          type="number"
-          id="watercolor-box-generator-row-length"
-          min="1"
-          max="500"
-          value="175"
-          class="text-right"
-        /> mm
-      </td>
-    </tr>
-    <tr>
-      <td>Row Width</td>
-      <td>
-        <input
-          type="number"
-          id="watercolor-box-generator-row-width"
-          min="1"
-          max="500"
-          value="20"
-          class="text-right"
-        /> mm
-      </td>
-    </tr>
-  </table>
+  <CountInput name="Rows" id="watercolor-box-generator-rows" defaultValue={3} />
+  <MillimeterInput
+    name="Wood Thickness"
+    id="watercolor-box-generator-material-thickness-wood"
+    defaultValue={3}
+  />
+  <MillimeterInput
+    name="Glass Thickness"
+    id="watercolor-box-generator-material-thickness-glass"
+    defaultValue={3}
+  />
+  <MillimeterInput
+    name="Sample Width"
+    id="watercolor-box-generator-sample-width"
+    defaultValue={20}
+  />
+  <MillimeterInput
+    name="Row Length"
+    id="watercolor-box-generator-row-length"
+    defaultValue={175}
+  />
+  <MillimeterInput
+    name="Row Width"
+    id="watercolor-box-generator-row-width"
+    defaultValue={20}
+  />
 
   <div
     id="watercolor-box-preview"

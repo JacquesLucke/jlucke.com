@@ -1,0 +1,24 @@
+---
+interface Props {
+  name: string;
+  id: string;
+  defaultValue: number;
+}
+
+const { name, id, defaultValue } = Astro.props;
+---
+
+<div>
+  {name}
+  <input
+    type="number"
+    id={id}
+    value={defaultValue}
+    class="persist-value text-right"
+  />
+  mm
+</div>
+
+<script>
+  import "../../scripts/persistent_inputs";
+</script>

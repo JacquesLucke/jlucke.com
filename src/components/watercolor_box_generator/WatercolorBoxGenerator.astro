@@ -45,6 +45,20 @@ import MillimeterInput from "./MillimeterInput.astro";
         defaultValue={3}
       />
 
+      <h3>Counts</h3>
+      <CountInput name="Side" id="watercolor-box-side-count" defaultValue={2} />
+      <CountInput
+        name="Front"
+        id="watercolor-box-front-count"
+        defaultValue={2}
+      />
+      <CountInput
+        name="Bottom"
+        id="watercolor-box-bottom-count"
+        defaultValue={1}
+      />
+      <CountInput name="Row" id="watercolor-box-row-count" defaultValue={3} />
+
       <h3>Other</h3>
       <MillimeterInput
         name="Holder Width"
@@ -71,7 +85,6 @@ import MillimeterInput from "./MillimeterInput.astro";
         id="watercolor-box-generator-front-slice-width"
         defaultValue={10}
       />
-
       <MillimeterInput
         name="Height Overlap"
         id="watercolor-box-generator-height-overlap"
@@ -91,64 +104,29 @@ import MillimeterInput from "./MillimeterInput.astro";
   </div>
 
   <div
-    id="watercolor-box-preview"
+    id="watercolor-box-preview-side"
     class="my-3 h-50 w-full bg-contain bg-center bg-no-repeat px-6"
   >
   </div>
-  Below
+  <div
+    id="watercolor-box-preview-front"
+    class="my-3 h-50 w-full bg-contain bg-center bg-no-repeat px-6"
+  >
+  </div>
+  <div
+    id="watercolor-box-preview-bottom"
+    class="my-3 h-50 w-full bg-contain bg-center bg-no-repeat px-6"
+  >
+  </div>
+  <div
+    id="watercolor-box-preview-row"
+    class="my-3 h-50 w-full bg-contain bg-center bg-no-repeat px-6"
+  >
+  </div>
 
   <script>
+    import { swap } from "astro/virtual-modules/transitions-swap-functions.js";
     import { registerThemeToggleListener } from "../../scripts/dark_mode";
-
-    const thicknessWoodElem = document.getElementById(
-      "watercolor-box-generator-material-thickness-wood"
-    )! as HTMLInputElement;
-    const thicknessGlassElem = document.getElementById(
-      "watercolor-box-generator-material-thickness-glass"
-    )! as HTMLInputElement;
-    const rowsElem = document.getElementById(
-      "watercolor-box-generator-rows"
-    )! as HTMLInputElement;
-    const sampleWidthElem = document.getElementById(
-      "watercolor-box-generator-sample-width"
-    )! as HTMLInputElement;
-    const rowLengthElem = document.getElementById(
-      "watercolor-box-generator-row-length"
-    )! as HTMLInputElement;
-    const rowWidthElem = document.getElementById(
-      "watercolor-box-generator-row-width"
-    )! as HTMLInputElement;
-    const holderWidthElem = document.getElementById(
-      "watercolor-box-generator-holder-width"
-    )! as HTMLInputElement;
-    const overshootElem = document.getElementById(
-      "watercolor-box-generator-overshoot"
-    )! as HTMLInputElement;
-    const innerStabilityWidthElem = document.getElementById(
-      "watercolor-box-generator-inner-stability-width"
-    )! as HTMLInputElement;
-    const floorSliceWidthElem = document.getElementById(
-      "watercolor-box-generator-floor-slice-width"
-    )! as HTMLInputElement;
-    const frontSliceWidthElem = document.getElementById(
-      "watercolor-box-generator-front-slice-width"
-    )! as HTMLInputElement;
-    const heightElem = document.getElementById(
-      "watercolor-box-generator-height"
-    )! as HTMLInputElement;
-    const heightOverlapElem = document.getElementById(
-      "watercolor-box-generator-height-overlap"
-    )! as HTMLInputElement;
-    const verticalHolderElem = document.getElementById(
-      "watercolor-box-generator-vertical-holder"
-    )! as HTMLInputElement;
-    const floorClearanceElem = document.getElementById(
-      "watercolor-box-generator-floor-clearance"
-    )! as HTMLInputElement;
-
-    const watercolorBoxPreview = document.getElementById(
-      "watercolor-box-preview"
-    )! as HTMLDivElement;
 
     interface WaterBoxParams {
       woodThickness: number;
@@ -166,6 +144,13 @@ import MillimeterInput from "./MillimeterInput.astro";
       heightOverlap: number;
       verticalHolder: number;
       floorClearance: number;
+    }
+
+    interface Counts {
+      side: number;
+      front: number;
+      bottom: number;
+      row: number;
     }
 
     interface Vec2 {
@@ -205,25 +190,51 @@ import MillimeterInput from "./MillimeterInput.astro";
       };
     }
 
+    function getCounts(): Counts {
+      return {
+        side: parseInt(watercolorBoxSideCount.value),
+        front: parseInt(watercolorBoxFrontCount.value),
+        bottom: parseInt(watercolorBoxBottomCount.value),
+        row: parseInt(watercolorBoxRowCount.value),
+      };
+    }
+
     function updatePreview() {
       const params = getParams();
+      const counts = getCounts();
 
-      let lines: Line[] = [];
-      lines.push(...createSideMulti(params, 4));
+      linesToSvgImage(
+        watercolorBoxPreviewSide,
+        createSideMulti(params, counts.side)
+      );
+      linesToSvgImage(
+        watercolorBoxPreviewFront,
+        createFrontMulti(params, counts.front)
+      );
+      linesToSvgImage(
+        watercolorBoxPreviewBottom,
+        createBottomMulti(params, counts.bottom)
+      );
+      linesToSvgImage(
+        watercolorBoxPreviewRow,
+        createSampleRowMulti(params, counts.row)
+      );
+    }
 
+    function linesToSvgImage(elem: HTMLElement, lines: Line[]) {
       const bounds = findLinesBoundingBox(lines);
-
       const svgWidth = bounds.xMax - bounds.xMin;
       const svgHeight = bounds.yMax - bounds.yMin;
 
       const svgLines = [];
       const color = window
-        .getComputedStyle(watercolorBoxPreview)
+        .getComputedStyle(watercolorBoxPreviewSide)
         .getPropertyValue("--color-muted");
       for (let line of lines) {
         svgLines.push(createCutLine(line, color));
       }
 
+      /* Margin to avoid cut off edges when displaying the svg. */
       const margin = 1;
 
       const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
@@ -241,7 +252,7 @@ import MillimeterInput from "./MillimeterInput.astro";
 
       const svgString = svg.outerHTML;
       const dataUrl = `data:image/svg+xml;base64,${btoa(svgString)}`;
-      watercolorBoxPreview.style.backgroundImage = `url(${dataUrl})`;
+      elem.style.backgroundImage = `url(${dataUrl})`;
     }
 
     function findLinesBoundingBox(lines: Line[]): BoundBox {
@@ -354,7 +365,6 @@ import MillimeterInput from "./MillimeterInput.astro";
         y -= p.sampleWidth;
       }
       add(x1, y0);
-
       return pointsToLines(points);
     }
 
@@ -560,6 +570,13 @@ import MillimeterInput from "./MillimeterInput.astro";
       return lines;
     }
 
+    function swapPointsXY(points: Vec2[]) {
+      for (let i = 0; i < points.length; i++) {
+        const point = points[i];
+        points[i] = { x: point.y, y: point.x };
+      }
+    }
+
     function createCutLine(line: Line, color: string) {
       const svgLine = document.createElementNS(
         "http://www.w3.org/2000/svg",
@@ -574,6 +591,78 @@ import MillimeterInput from "./MillimeterInput.astro";
       svgLine.setAttribute("vector-effect", "non-scaling-stroke");
       return svgLine;
     }
+
+    const thicknessWoodElem = document.getElementById(
+      "watercolor-box-generator-material-thickness-wood"
+    )! as HTMLInputElement;
+    const thicknessGlassElem = document.getElementById(
+      "watercolor-box-generator-material-thickness-glass"
+    )! as HTMLInputElement;
+    const rowsElem = document.getElementById(
+      "watercolor-box-generator-rows"
+    )! as HTMLInputElement;
+    const sampleWidthElem = document.getElementById(
+      "watercolor-box-generator-sample-width"
+    )! as HTMLInputElement;
+    const rowLengthElem = document.getElementById(
+      "watercolor-box-generator-row-length"
+    )! as HTMLInputElement;
+    const rowWidthElem = document.getElementById(
+      "watercolor-box-generator-row-width"
+    )! as HTMLInputElement;
+    const holderWidthElem = document.getElementById(
+      "watercolor-box-generator-holder-width"
+    )! as HTMLInputElement;
+    const overshootElem = document.getElementById(
+      "watercolor-box-generator-overshoot"
+    )! as HTMLInputElement;
+    const innerStabilityWidthElem = document.getElementById(
+      "watercolor-box-generator-inner-stability-width"
+    )! as HTMLInputElement;
+    const floorSliceWidthElem = document.getElementById(
+      "watercolor-box-generator-floor-slice-width"
+    )! as HTMLInputElement;
+    const frontSliceWidthElem = document.getElementById(
+      "watercolor-box-generator-front-slice-width"
+    )! as HTMLInputElement;
+    const heightElem = document.getElementById(
+      "watercolor-box-generator-height"
+    )! as HTMLInputElement;
+    const heightOverlapElem = document.getElementById(
+      "watercolor-box-generator-height-overlap"
+    )! as HTMLInputElement;
+    const verticalHolderElem = document.getElementById(
+      "watercolor-box-generator-vertical-holder"
+    )! as HTMLInputElement;
+    const floorClearanceElem = document.getElementById(
+      "watercolor-box-generator-floor-clearance"
+    )! as HTMLInputElement;
+
+    const watercolorBoxSideCount = document.getElementById(
+      "watercolor-box-side-count"
+    )! as HTMLInputElement;
+    const watercolorBoxFrontCount = document.getElementById(
+      "watercolor-box-front-count"
+    )! as HTMLInputElement;
+    const watercolorBoxBottomCount = document.getElementById(
+      "watercolor-box-bottom-count"
+    )! as HTMLInputElement;
+    const watercolorBoxRowCount = document.getElementById(
+      "watercolor-box-row-count"
+    )! as HTMLInputElement;
+
+    const watercolorBoxPreviewSide = document.getElementById(
+      "watercolor-box-preview-side"
+    )! as HTMLDivElement;
+    const watercolorBoxPreviewFront = document.getElementById(
+      "watercolor-box-preview-front"
+    )! as HTMLDivElement;
+    const watercolorBoxPreviewBottom = document.getElementById(
+      "watercolor-box-preview-bottom"
+    )! as HTMLDivElement;
+    const watercolorBoxPreviewRow = document.getElementById(
+      "watercolor-box-preview-row"
+    )! as HTMLDivElement;
 
     for (let elem of [
       thicknessWoodElem,
@@ -591,6 +680,10 @@ import MillimeterInput from "./MillimeterInput.astro";
       heightOverlapElem,
       verticalHolderElem,
       floorClearanceElem,
+      watercolorBoxSideCount,
+      watercolorBoxFrontCount,
+      watercolorBoxBottomCount,
+      watercolorBoxRowCount,
     ]) {
       elem.addEventListener("input", function () {
         updatePreview();

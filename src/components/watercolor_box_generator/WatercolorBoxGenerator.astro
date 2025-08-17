@@ -4,27 +4,13 @@ import MillimeterInput from "./MillimeterInput.astro";
 ---
 
 <div>
-  <div class="">
+  <div class="flex justify-center">
     <div class="">
+      <h3>Main Dimensions</h3>
       <CountInput
         name="Rows"
         id="watercolor-box-generator-rows"
         defaultValue={3}
-      />
-      <MillimeterInput
-        name="Wood Thickness"
-        id="watercolor-box-generator-material-thickness-wood"
-        defaultValue={3}
-      />
-      <MillimeterInput
-        name="Glass Thickness"
-        id="watercolor-box-generator-material-thickness-glass"
-        defaultValue={3}
-      />
-      <MillimeterInput
-        name="Sample Width"
-        id="watercolor-box-generator-sample-width"
-        defaultValue={20}
       />
       <MillimeterInput
         name="Row Length"
@@ -36,6 +22,30 @@ import MillimeterInput from "./MillimeterInput.astro";
         id="watercolor-box-generator-row-width"
         defaultValue={20}
       />
+      <MillimeterInput
+        name="Sample Width"
+        id="watercolor-box-generator-sample-width"
+        defaultValue={20}
+      />
+      <MillimeterInput
+        name="Height"
+        id="watercolor-box-generator-height"
+        defaultValue={24}
+      />
+
+      <h3>Material</h3>
+      <MillimeterInput
+        name="Wood Thickness"
+        id="watercolor-box-generator-material-thickness-wood"
+        defaultValue={3}
+      />
+      <MillimeterInput
+        name="Glass Thickness"
+        id="watercolor-box-generator-material-thickness-glass"
+        defaultValue={3}
+      />
+
+      <h3>Other</h3>
       <MillimeterInput
         name="Holder Width"
         id="watercolor-box-generator-holder-width"
@@ -61,11 +71,7 @@ import MillimeterInput from "./MillimeterInput.astro";
         id="watercolor-box-generator-front-slice-width"
         defaultValue={10}
       />
-      <MillimeterInput
-        name="Height"
-        id="watercolor-box-generator-height"
-        defaultValue={24}
-      />
+
       <MillimeterInput
         name="Height Overlap"
         id="watercolor-box-generator-height-overlap"
@@ -86,7 +92,7 @@ import MillimeterInput from "./MillimeterInput.astro";
 
   <div
     id="watercolor-box-preview"
-    class="h-50 w-full bg-contain bg-center bg-no-repeat px-6"
+    class="my-3 h-50 w-full bg-contain bg-center bg-no-repeat px-6"
   >
   </div>
   Below

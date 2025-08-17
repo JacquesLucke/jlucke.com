@@ -4,77 +4,85 @@ import MillimeterInput from "./MillimeterInput.astro";
 ---
 
 <div>
-  <CountInput name="Rows" id="watercolor-box-generator-rows" defaultValue={3} />
-  <MillimeterInput
-    name="Wood Thickness"
-    id="watercolor-box-generator-material-thickness-wood"
-    defaultValue={3}
-  />
-  <MillimeterInput
-    name="Glass Thickness"
-    id="watercolor-box-generator-material-thickness-glass"
-    defaultValue={3}
-  />
-  <MillimeterInput
-    name="Sample Width"
-    id="watercolor-box-generator-sample-width"
-    defaultValue={20}
-  />
-  <MillimeterInput
-    name="Row Length"
-    id="watercolor-box-generator-row-length"
-    defaultValue={175}
-  />
-  <MillimeterInput
-    name="Row Width"
-    id="watercolor-box-generator-row-width"
-    defaultValue={20}
-  />
-  <MillimeterInput
-    name="Holder Width"
-    id="watercolor-box-generator-holder-width"
-    defaultValue={3}
-  />
-  <MillimeterInput
-    name="Overshoot"
-    id="watercolor-box-generator-overshoot"
-    defaultValue={5}
-  />
-  <MillimeterInput
-    name="Inner Stability Width"
-    id="watercolor-box-generator-inner-stability-width"
-    defaultValue={3}
-  />
-  <MillimeterInput
-    name="Floor Slice Width"
-    id="watercolor-box-generator-floor-slice-width"
-    defaultValue={10}
-  />
-  <MillimeterInput
-    name="Front Slice Width"
-    id="watercolor-box-generator-front-slice-width"
-    defaultValue={10}
-  />
-  <MillimeterInput
-    name="Height"
-    id="watercolor-box-generator-height"
-    defaultValue={24}
-  />
-  <MillimeterInput
-    name="Height Overlap"
-    id="watercolor-box-generator-height-overlap"
-    defaultValue={3}
-  />
-  <MillimeterInput
-    name="Vertical Holder"
-    id="watercolor-box-generator-vertical-holder"
-    defaultValue={6}
-  />
-  <MillimeterInput
-    name="Floor Clearance"
-    id="watercolor-box-generator-floor-clearance"
-    defaultValue={3}
-  />
+  <div class="">
+    <div class="">
+      <CountInput
+        name="Rows"
+        id="watercolor-box-generator-rows"
+        defaultValue={3}
+      />
+      <MillimeterInput
+        name="Wood Thickness"
+        id="watercolor-box-generator-material-thickness-wood"
+        defaultValue={3}
+      />
+      <MillimeterInput
+        name="Glass Thickness"
+        id="watercolor-box-generator-material-thickness-glass"
+        defaultValue={3}
+      />
+      <MillimeterInput
+        name="Sample Width"
+        id="watercolor-box-generator-sample-width"
+        defaultValue={20}
+      />
+      <MillimeterInput
+        name="Row Length"
+        id="watercolor-box-generator-row-length"
+        defaultValue={175}
+      />
+      <MillimeterInput
+        name="Row Width"
+        id="watercolor-box-generator-row-width"
+        defaultValue={20}
+      />
+      <MillimeterInput
+        name="Holder Width"
+        id="watercolor-box-generator-holder-width"
+        defaultValue={3}
+      />
+      <MillimeterInput
+        name="Overshoot"
+        id="watercolor-box-generator-overshoot"
+        defaultValue={5}
+      />
+      <MillimeterInput
+        name="Inner Stability Width"
+        id="watercolor-box-generator-inner-stability-width"
+        defaultValue={3}
+      />
+      <MillimeterInput
+        name="Floor Slice Width"
+        id="watercolor-box-generator-floor-slice-width"
+        defaultValue={10}
+      />
+      <MillimeterInput
+        name="Front Slice Width"
+        id="watercolor-box-generator-front-slice-width"
+        defaultValue={10}
+      />
+      <MillimeterInput
+        name="Height"
+        id="watercolor-box-generator-height"
+        defaultValue={24}
+      />
+      <MillimeterInput
+        name="Height Overlap"
+        id="watercolor-box-generator-height-overlap"
+        defaultValue={3}
+      />
+      <MillimeterInput
+        name="Vertical Holder"
+        id="watercolor-box-generator-vertical-holder"
+        defaultValue={6}
+      />
+      <MillimeterInput
+        name="Floor Clearance"
+        id="watercolor-box-generator-floor-clearance"
+        defaultValue={3}
+      />
+    </div>
+  </div>
 
   <div
     id="watercolor-box-preview"
@@ -82,509 +90,509 @@ import MillimeterInput from "./MillimeterInput.astro";
   >
   </div>
   Below
-</div>
 
-<script>
-  import { registerThemeToggleListener } from "../../scripts/dark_mode";
+  <script>
+    import { registerThemeToggleListener } from "../../scripts/dark_mode";
 
-  const thicknessWoodElem = document.getElementById(
-    "watercolor-box-generator-material-thickness-wood"
-  )! as HTMLInputElement;
-  const thicknessGlassElem = document.getElementById(
-    "watercolor-box-generator-material-thickness-glass"
-  )! as HTMLInputElement;
-  const rowsElem = document.getElementById(
-    "watercolor-box-generator-rows"
-  )! as HTMLInputElement;
-  const sampleWidthElem = document.getElementById(
-    "watercolor-box-generator-sample-width"
-  )! as HTMLInputElement;
-  const rowLengthElem = document.getElementById(
-    "watercolor-box-generator-row-length"
-  )! as HTMLInputElement;
-  const rowWidthElem = document.getElementById(
-    "watercolor-box-generator-row-width"
-  )! as HTMLInputElement;
-  const holderWidthElem = document.getElementById(
-    "watercolor-box-generator-holder-width"
-  )! as HTMLInputElement;
-  const overshootElem = document.getElementById(
-    "watercolor-box-generator-overshoot"
-  )! as HTMLInputElement;
-  const innerStabilityWidthElem = document.getElementById(
-    "watercolor-box-generator-inner-stability-width"
-  )! as HTMLInputElement;
-  const floorSliceWidthElem = document.getElementById(
-    "watercolor-box-generator-floor-slice-width"
-  )! as HTMLInputElement;
-  const frontSliceWidthElem = document.getElementById(
-    "watercolor-box-generator-front-slice-width"
-  )! as HTMLInputElement;
-  const heightElem = document.getElementById(
-    "watercolor-box-generator-height"
-  )! as HTMLInputElement;
-  const heightOverlapElem = document.getElementById(
-    "watercolor-box-generator-height-overlap"
-  )! as HTMLInputElement;
-  const verticalHolderElem = document.getElementById(
-    "watercolor-box-generator-vertical-holder"
-  )! as HTMLInputElement;
-  const floorClearanceElem = document.getElementById(
-    "watercolor-box-generator-floor-clearance"
-  )! as HTMLInputElement;
+    const thicknessWoodElem = document.getElementById(
+      "watercolor-box-generator-material-thickness-wood"
+    )! as HTMLInputElement;
+    const thicknessGlassElem = document.getElementById(
+      "watercolor-box-generator-material-thickness-glass"
+    )! as HTMLInputElement;
+    const rowsElem = document.getElementById(
+      "watercolor-box-generator-rows"
+    )! as HTMLInputElement;
+    const sampleWidthElem = document.getElementById(
+      "watercolor-box-generator-sample-width"
+    )! as HTMLInputElement;
+    const rowLengthElem = document.getElementById(
+      "watercolor-box-generator-row-length"
+    )! as HTMLInputElement;
+    const rowWidthElem = document.getElementById(
+      "watercolor-box-generator-row-width"
+    )! as HTMLInputElement;
+    const holderWidthElem = document.getElementById(
+      "watercolor-box-generator-holder-width"
+    )! as HTMLInputElement;
+    const overshootElem = document.getElementById(
+      "watercolor-box-generator-overshoot"
+    )! as HTMLInputElement;
+    const innerStabilityWidthElem = document.getElementById(
+      "watercolor-box-generator-inner-stability-width"
+    )! as HTMLInputElement;
+    const floorSliceWidthElem = document.getElementById(
+      "watercolor-box-generator-floor-slice-width"
+    )! as HTMLInputElement;
+    const frontSliceWidthElem = document.getElementById(
+      "watercolor-box-generator-front-slice-width"
+    )! as HTMLInputElement;
+    const heightElem = document.getElementById(
+      "watercolor-box-generator-height"
+    )! as HTMLInputElement;
+    const heightOverlapElem = document.getElementById(
+      "watercolor-box-generator-height-overlap"
+    )! as HTMLInputElement;
+    const verticalHolderElem = document.getElementById(
+      "watercolor-box-generator-vertical-holder"
+    )! as HTMLInputElement;
+    const floorClearanceElem = document.getElementById(
+      "watercolor-box-generator-floor-clearance"
+    )! as HTMLInputElement;
 
-  const watercolorBoxPreview = document.getElementById(
-    "watercolor-box-preview"
-  )! as HTMLDivElement;
+    const watercolorBoxPreview = document.getElementById(
+      "watercolor-box-preview"
+    )! as HTMLDivElement;
 
-  interface WaterBoxParams {
-    woodThickness: number;
-    glassThickness: number;
-    rows: number;
-    sampleWidth: number;
-    rowLength: number;
-    rowWidth: number;
-    holderWidth: number;
-    overshoot: number;
-    innerStabilityWidth: number;
-    floorSliceWidth: number;
-    frontSliceWidth: number;
-    height: number;
-    heightOverlap: number;
-    verticalHolder: number;
-    floorClearance: number;
-  }
-
-  interface Vec2 {
-    x: number;
-    y: number;
-  }
-
-  interface Line {
-    a: Vec2;
-    b: Vec2;
-  }
-
-  interface BoundBox {
-    xMin: number;
-    yMin: number;
-    xMax: number;
-    yMax: number;
-  }
-
-  function getParams(): WaterBoxParams {
-    return {
-      woodThickness: parseFloat(thicknessWoodElem.value),
-      glassThickness: parseFloat(thicknessGlassElem.value),
-      rows: parseInt(rowsElem.value),
-      sampleWidth: parseFloat(sampleWidthElem.value),
-      rowLength: parseFloat(rowLengthElem.value),
-      rowWidth: parseFloat(rowWidthElem.value),
-      holderWidth: parseFloat(holderWidthElem.value),
-      overshoot: parseFloat(overshootElem.value),
-      innerStabilityWidth: parseFloat(innerStabilityWidthElem.value),
-      floorSliceWidth: parseFloat(floorSliceWidthElem.value),
-      frontSliceWidth: parseFloat(frontSliceWidthElem.value),
-      height: parseFloat(heightElem.value),
-      heightOverlap: parseFloat(heightOverlapElem.value),
-      verticalHolder: parseFloat(verticalHolderElem.value),
-      floorClearance: parseFloat(floorClearanceElem.value),
-    };
-  }
-
-  function updatePreview() {
-    const params = getParams();
-
-    let lines: Line[] = [];
-    lines.push(...createSideMulti(params, 4));
-
-    const bounds = findLinesBoundingBox(lines);
-
-    const svgWidth = bounds.xMax - bounds.xMin;
-    const svgHeight = bounds.yMax - bounds.yMin;
-
-    const svgLines = [];
-    const color = window
-      .getComputedStyle(watercolorBoxPreview)
-      .getPropertyValue("--color-muted");
-    for (let line of lines) {
-      svgLines.push(createCutLine(line, color));
+    interface WaterBoxParams {
+      woodThickness: number;
+      glassThickness: number;
+      rows: number;
+      sampleWidth: number;
+      rowLength: number;
+      rowWidth: number;
+      holderWidth: number;
+      overshoot: number;
+      innerStabilityWidth: number;
+      floorSliceWidth: number;
+      frontSliceWidth: number;
+      height: number;
+      heightOverlap: number;
+      verticalHolder: number;
+      floorClearance: number;
     }
 
-    const margin = 1;
-
-    const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-    svg.setAttribute("xmlns", "http://www.w3.org/2000/svg");
-    svg.setAttribute(
-      "viewBox",
-      `-${margin} -${margin} ${svgWidth + 2 * margin} ${svgHeight + 2 * margin}`
-    );
-    svg.setAttribute("width", `${svgWidth}mm`);
-    svg.setAttribute("height", `${svgHeight}mm`);
-    svg.setAttribute("shape-rendering", "crispEdges");
-    for (let line of svgLines) {
-      svg.appendChild(line);
+    interface Vec2 {
+      x: number;
+      y: number;
     }
 
-    const svgString = svg.outerHTML;
-    const dataUrl = `data:image/svg+xml;base64,${btoa(svgString)}`;
-    watercolorBoxPreview.style.backgroundImage = `url(${dataUrl})`;
-  }
-
-  function findLinesBoundingBox(lines: Line[]): BoundBox {
-    let xMin = Number.MAX_VALUE;
-    let yMin = Number.MAX_VALUE;
-    let xMax = Number.MIN_VALUE;
-    let yMax = Number.MIN_VALUE;
-    for (let line of lines) {
-      if (line.a.x < xMin) {
-        xMin = line.a.x;
-      }
-      if (line.a.y < yMin) {
-        yMin = line.a.y;
-      }
-      if (line.b.x < xMin) {
-        xMin = line.b.x;
-      }
-      if (line.b.y < yMin) {
-        yMin = line.b.y;
-      }
-      if (line.a.x > xMax) {
-        xMax = line.a.x;
-      }
-      if (line.a.y > yMax) {
-        yMax = line.a.y;
-      }
-      if (line.b.x > xMax) {
-        xMax = line.b.x;
-      }
-      if (line.b.y > yMax) {
-        yMax = line.b.y;
-      }
+    interface Line {
+      a: Vec2;
+      b: Vec2;
     }
 
-    return { xMin, yMin, xMax, yMax };
-  }
-
-  function createSampleRow(p: WaterBoxParams): Line[] {
-    const points: Vec2[] = [];
-    const add = (x: number, y: number) => {
-      points.push({ x, y });
-    };
-
-    const x0 = 0;
-    const x1 = p.holderWidth;
-    const x2 = p.sampleWidth - p.holderWidth;
-    const x3 = p.sampleWidth;
-
-    const y0 = 0;
-    const y1 = p.woodThickness;
-    const y2 = p.rowLength + p.woodThickness;
-    const y3 = p.rowLength + 2 * p.woodThickness;
-
-    add(x0, y0);
-    add(x1, y0);
-    add(x1, y1);
-    add(x2, y1);
-    add(x2, y0);
-    add(x3, y0);
-    add(x3, y3);
-    add(x2, y3);
-    add(x2, y2);
-    add(x1, y2);
-    add(x1, y3);
-    add(x0, y3);
-    add(x0, y0);
-
-    return pointsToLines(points);
-  }
-
-  function createBottom(p: WaterBoxParams): Line[] {
-    const points: Vec2[] = [];
-    const add = (x: number, y: number) => {
-      points.push({ x, y });
-    };
-
-    const x0 = 0;
-    const x1 = p.woodThickness;
-    const x2 = x1 + p.rowLength;
-    const x3 = x2 + p.woodThickness;
-
-    const y0 = 0;
-    const y1 = p.innerStabilityWidth;
-
-    add(x1, y0);
-    add(x2, y0);
-    add(x2, y1);
-    let y = y1;
-    for (let i = 0; i < p.rows; i++) {
-      y += p.sampleWidth;
-      y += (p.rowWidth - p.floorSliceWidth) / 2;
-      add(x2, y);
-      add(x3, y);
-      y += p.floorSliceWidth;
-      add(x3, y);
-      add(x2, y);
-      y += (p.rowWidth - p.floorSliceWidth) / 2;
-      add(x2, y);
+    interface BoundBox {
+      xMin: number;
+      yMin: number;
+      xMax: number;
+      yMax: number;
     }
-    add(x1, y);
-    for (let i = 0; i < p.rows; i++) {
-      y -= (p.rowWidth - p.floorSliceWidth) / 2;
-      add(x1, y);
-      add(x0, y);
-      y -= p.floorSliceWidth;
-      add(x0, y);
-      add(x1, y);
-      y -= (p.rowWidth - p.floorSliceWidth) / 2;
-      add(x1, y);
-      y -= p.sampleWidth;
-    }
-    add(x1, y0);
 
-    return pointsToLines(points);
-  }
-
-  function createFront(p: WaterBoxParams): Line[] {
-    const points: Vec2[] = [];
-    const add = (x: number, y: number) => {
-      points.push({ x, y });
-    };
-
-    const x0 = 0;
-    const x1 = p.overshoot;
-    const x2 = x1 + p.woodThickness;
-    const x3 = x2 + (p.rowLength - p.frontSliceWidth) / 2;
-    const x4 = x3 + p.frontSliceWidth;
-    const x5 = x4 + (p.rowLength - p.frontSliceWidth) / 2;
-    const x6 = x5 + p.woodThickness;
-    const x7 = x6 + p.overshoot;
-
-    const y0 = 0;
-    const y1 = p.heightOverlap;
-    const y2 = y1 + p.verticalHolder;
-    const y3 = p.height - p.heightOverlap;
-    const y4 = p.height;
-
-    add(x0, y1);
-    add(x1, y1);
-    add(x1, y0);
-    add(x3, y0);
-    add(x3, y1);
-    add(x4, y1);
-    add(x4, y0);
-    add(x6, y0);
-    add(x6, y1);
-    add(x7, y1);
-    add(x7, y4);
-    add(x6, y4);
-    add(x6, y2);
-    add(x5, y2);
-    add(x5, y3);
-    add(x4, y3);
-    add(x4, y4);
-    add(x3, y4);
-    add(x3, y3);
-    add(x2, y3);
-    add(x2, y2);
-    add(x1, y2);
-    add(x1, y4);
-    add(x0, y4);
-    add(x0, y1);
-
-    return pointsToLines(points);
-  }
-
-  function createSide(p: WaterBoxParams): Line[] {
-    const outerPoints: Vec2[] = [];
-    const add = (x: number, y: number) => {
-      outerPoints.push({ x, y });
-    };
-
-    let innerStartXs = [];
-
-    const x0 = 0;
-    const x1 = p.overshoot;
-    const x2 = x1 + p.woodThickness;
-    const x3 = x2 + p.innerStabilityWidth;
-
-    const y0 = 0;
-    const y1 = p.heightOverlap;
-    const y2 = y1 + p.woodThickness + p.glassThickness;
-    const y6 = p.height;
-    const y5 = y6 - p.heightOverlap;
-    const y4 = y5 - p.floorClearance;
-    const y3 = y4 - p.woodThickness;
-
-    add(x0, y1);
-    add(x1, y1);
-    add(x1, y2);
-    add(x2, y2);
-    add(x2, y0);
-    add(x3, y0);
-    add(x3, y2);
-    let x = x3;
-    for (let i = 0; i < p.rows; i++) {
-      x += p.holderWidth;
-      add(x, y2);
-      add(x, y1);
-      x += p.sampleWidth - 2.0 * p.holderWidth;
-      add(x, y1);
-      add(x, y2);
-      x += p.holderWidth;
-      innerStartXs.push(x + (p.rowWidth - p.floorSliceWidth) / 2);
-      add(x, y2);
-      add(x, y0);
-      x += p.rowWidth;
-      add(x, y0);
-      add(x, y2);
-    }
-    x += p.woodThickness;
-    add(x, y2);
-    add(x, y1);
-    x += p.overshoot;
-    add(x, y1);
-    add(x, y6);
-    x -= p.overshoot;
-    add(x, y6);
-    add(x, y5);
-    x -= p.woodThickness;
-    add(x, y5);
-    for (let i = 0; i < p.rows; i++) {
-      x -= p.rowWidth;
-      add(x, y5);
-      add(x, y6);
-      x -= p.sampleWidth;
-      add(x, y6);
-      add(x, y5);
-    }
-    add(x1, y5);
-    add(x1, y6);
-    add(x0, y6);
-    add(x0, y1);
-
-    const lines = pointsToLines(outerPoints);
-
-    for (const x of innerStartXs) {
-      let rectPoints: Vec2[] = [];
-      const add = (x: number, y: number) => {
-        rectPoints.push({ x, y });
+    function getParams(): WaterBoxParams {
+      return {
+        woodThickness: parseFloat(thicknessWoodElem.value),
+        glassThickness: parseFloat(thicknessGlassElem.value),
+        rows: parseInt(rowsElem.value),
+        sampleWidth: parseFloat(sampleWidthElem.value),
+        rowLength: parseFloat(rowLengthElem.value),
+        rowWidth: parseFloat(rowWidthElem.value),
+        holderWidth: parseFloat(holderWidthElem.value),
+        overshoot: parseFloat(overshootElem.value),
+        innerStabilityWidth: parseFloat(innerStabilityWidthElem.value),
+        floorSliceWidth: parseFloat(floorSliceWidthElem.value),
+        frontSliceWidth: parseFloat(frontSliceWidthElem.value),
+        height: parseFloat(heightElem.value),
+        heightOverlap: parseFloat(heightOverlapElem.value),
+        verticalHolder: parseFloat(verticalHolderElem.value),
+        floorClearance: parseFloat(floorClearanceElem.value),
       };
-      add(x, y3);
-      add(x + p.floorSliceWidth, y3);
-      add(x + p.floorSliceWidth, y4);
-      add(x, y4);
-      add(x, y3);
-      lines.push(...pointsToLines(rectPoints));
     }
 
-    return lines;
-  }
+    function updatePreview() {
+      const params = getParams();
 
-  function createSideMulti(p: WaterBoxParams, count: number): Line[] {
-    const referenceLines = createSide(p);
-    const lines = [];
-    for (let i = 0; i < count; i++) {
-      let offset = { x: 0, y: i * (p.height - p.heightOverlap) };
-      lines.push(...offsetLines(referenceLines, offset));
+      let lines: Line[] = [];
+      lines.push(...createSideMulti(params, 4));
+
+      const bounds = findLinesBoundingBox(lines);
+
+      const svgWidth = bounds.xMax - bounds.xMin;
+      const svgHeight = bounds.yMax - bounds.yMin;
+
+      const svgLines = [];
+      const color = window
+        .getComputedStyle(watercolorBoxPreview)
+        .getPropertyValue("--color-muted");
+      for (let line of lines) {
+        svgLines.push(createCutLine(line, color));
+      }
+
+      const margin = 1;
+
+      const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+      svg.setAttribute("xmlns", "http://www.w3.org/2000/svg");
+      svg.setAttribute(
+        "viewBox",
+        `-${margin} -${margin} ${svgWidth + 2 * margin} ${svgHeight + 2 * margin}`
+      );
+      svg.setAttribute("width", `${svgWidth}mm`);
+      svg.setAttribute("height", `${svgHeight}mm`);
+      svg.setAttribute("shape-rendering", "crispEdges");
+      for (let line of svgLines) {
+        svg.appendChild(line);
+      }
+
+      const svgString = svg.outerHTML;
+      const dataUrl = `data:image/svg+xml;base64,${btoa(svgString)}`;
+      watercolorBoxPreview.style.backgroundImage = `url(${dataUrl})`;
     }
-    return lines;
-  }
 
-  function createFrontMulti(p: WaterBoxParams, count: number): Line[] {
-    const referenceLines = createFront(p);
-    const lines = [];
-    for (let i = 0; i < count; i++) {
-      let offset = { x: 0, y: i * (p.height - p.heightOverlap) };
-      lines.push(...offsetLines(referenceLines, offset));
+    function findLinesBoundingBox(lines: Line[]): BoundBox {
+      let xMin = Number.MAX_VALUE;
+      let yMin = Number.MAX_VALUE;
+      let xMax = Number.MIN_VALUE;
+      let yMax = Number.MIN_VALUE;
+      for (let line of lines) {
+        if (line.a.x < xMin) {
+          xMin = line.a.x;
+        }
+        if (line.a.y < yMin) {
+          yMin = line.a.y;
+        }
+        if (line.b.x < xMin) {
+          xMin = line.b.x;
+        }
+        if (line.b.y < yMin) {
+          yMin = line.b.y;
+        }
+        if (line.a.x > xMax) {
+          xMax = line.a.x;
+        }
+        if (line.a.y > yMax) {
+          yMax = line.a.y;
+        }
+        if (line.b.x > xMax) {
+          xMax = line.b.x;
+        }
+        if (line.b.y > yMax) {
+          yMax = line.b.y;
+        }
+      }
+
+      return { xMin, yMin, xMax, yMax };
     }
-    return lines;
-  }
 
-  function createSampleRowMulti(p: WaterBoxParams, count: number): Line[] {
-    const referenceLines = createSampleRow(p);
-    const lines = [];
-    for (let i = 0; i < count; i++) {
-      let offset = { x: i * p.sampleWidth, y: 0 };
-      lines.push(...offsetLines(referenceLines, offset));
+    function createSampleRow(p: WaterBoxParams): Line[] {
+      const points: Vec2[] = [];
+      const add = (x: number, y: number) => {
+        points.push({ x, y });
+      };
+
+      const x0 = 0;
+      const x1 = p.holderWidth;
+      const x2 = p.sampleWidth - p.holderWidth;
+      const x3 = p.sampleWidth;
+
+      const y0 = 0;
+      const y1 = p.woodThickness;
+      const y2 = p.rowLength + p.woodThickness;
+      const y3 = p.rowLength + 2 * p.woodThickness;
+
+      add(x0, y0);
+      add(x1, y0);
+      add(x1, y1);
+      add(x2, y1);
+      add(x2, y0);
+      add(x3, y0);
+      add(x3, y3);
+      add(x2, y3);
+      add(x2, y2);
+      add(x1, y2);
+      add(x1, y3);
+      add(x0, y3);
+      add(x0, y0);
+
+      return pointsToLines(points);
     }
-    return lines;
-  }
 
-  function createBottomMulti(p: WaterBoxParams, count: number): Line[] {
-    const referenceLines = createBottom(p);
-    const bounds = findLinesBoundingBox(referenceLines);
-    const lines = [];
-    for (let i = 0; i < count; i++) {
-      let offset = { x: 0, y: i * (bounds.yMax - bounds.yMin) };
-      lines.push(...offsetLines(referenceLines, offset));
+    function createBottom(p: WaterBoxParams): Line[] {
+      const points: Vec2[] = [];
+      const add = (x: number, y: number) => {
+        points.push({ x, y });
+      };
+
+      const x0 = 0;
+      const x1 = p.woodThickness;
+      const x2 = x1 + p.rowLength;
+      const x3 = x2 + p.woodThickness;
+
+      const y0 = 0;
+      const y1 = p.innerStabilityWidth;
+
+      add(x1, y0);
+      add(x2, y0);
+      add(x2, y1);
+      let y = y1;
+      for (let i = 0; i < p.rows; i++) {
+        y += p.sampleWidth;
+        y += (p.rowWidth - p.floorSliceWidth) / 2;
+        add(x2, y);
+        add(x3, y);
+        y += p.floorSliceWidth;
+        add(x3, y);
+        add(x2, y);
+        y += (p.rowWidth - p.floorSliceWidth) / 2;
+        add(x2, y);
+      }
+      add(x1, y);
+      for (let i = 0; i < p.rows; i++) {
+        y -= (p.rowWidth - p.floorSliceWidth) / 2;
+        add(x1, y);
+        add(x0, y);
+        y -= p.floorSliceWidth;
+        add(x0, y);
+        add(x1, y);
+        y -= (p.rowWidth - p.floorSliceWidth) / 2;
+        add(x1, y);
+        y -= p.sampleWidth;
+      }
+      add(x1, y0);
+
+      return pointsToLines(points);
     }
-    return lines;
-  }
 
-  function offsetLines(lines: Line[], offset: Vec2): Line[] {
-    const result = [];
-    for (const line of lines) {
-      result.push({
-        a: offsetVec2(line.a, offset),
-        b: offsetVec2(line.b, offset),
+    function createFront(p: WaterBoxParams): Line[] {
+      const points: Vec2[] = [];
+      const add = (x: number, y: number) => {
+        points.push({ x, y });
+      };
+
+      const x0 = 0;
+      const x1 = p.overshoot;
+      const x2 = x1 + p.woodThickness;
+      const x3 = x2 + (p.rowLength - p.frontSliceWidth) / 2;
+      const x4 = x3 + p.frontSliceWidth;
+      const x5 = x4 + (p.rowLength - p.frontSliceWidth) / 2;
+      const x6 = x5 + p.woodThickness;
+      const x7 = x6 + p.overshoot;
+
+      const y0 = 0;
+      const y1 = p.heightOverlap;
+      const y2 = y1 + p.verticalHolder;
+      const y3 = p.height - p.heightOverlap;
+      const y4 = p.height;
+
+      add(x0, y1);
+      add(x1, y1);
+      add(x1, y0);
+      add(x3, y0);
+      add(x3, y1);
+      add(x4, y1);
+      add(x4, y0);
+      add(x6, y0);
+      add(x6, y1);
+      add(x7, y1);
+      add(x7, y4);
+      add(x6, y4);
+      add(x6, y2);
+      add(x5, y2);
+      add(x5, y3);
+      add(x4, y3);
+      add(x4, y4);
+      add(x3, y4);
+      add(x3, y3);
+      add(x2, y3);
+      add(x2, y2);
+      add(x1, y2);
+      add(x1, y4);
+      add(x0, y4);
+      add(x0, y1);
+
+      return pointsToLines(points);
+    }
+
+    function createSide(p: WaterBoxParams): Line[] {
+      const outerPoints: Vec2[] = [];
+      const add = (x: number, y: number) => {
+        outerPoints.push({ x, y });
+      };
+
+      let innerStartXs = [];
+
+      const x0 = 0;
+      const x1 = p.overshoot;
+      const x2 = x1 + p.woodThickness;
+      const x3 = x2 + p.innerStabilityWidth;
+
+      const y0 = 0;
+      const y1 = p.heightOverlap;
+      const y2 = y1 + p.woodThickness + p.glassThickness;
+      const y6 = p.height;
+      const y5 = y6 - p.heightOverlap;
+      const y4 = y5 - p.floorClearance;
+      const y3 = y4 - p.woodThickness;
+
+      add(x0, y1);
+      add(x1, y1);
+      add(x1, y2);
+      add(x2, y2);
+      add(x2, y0);
+      add(x3, y0);
+      add(x3, y2);
+      let x = x3;
+      for (let i = 0; i < p.rows; i++) {
+        x += p.holderWidth;
+        add(x, y2);
+        add(x, y1);
+        x += p.sampleWidth - 2.0 * p.holderWidth;
+        add(x, y1);
+        add(x, y2);
+        x += p.holderWidth;
+        innerStartXs.push(x + (p.rowWidth - p.floorSliceWidth) / 2);
+        add(x, y2);
+        add(x, y0);
+        x += p.rowWidth;
+        add(x, y0);
+        add(x, y2);
+      }
+      x += p.woodThickness;
+      add(x, y2);
+      add(x, y1);
+      x += p.overshoot;
+      add(x, y1);
+      add(x, y6);
+      x -= p.overshoot;
+      add(x, y6);
+      add(x, y5);
+      x -= p.woodThickness;
+      add(x, y5);
+      for (let i = 0; i < p.rows; i++) {
+        x -= p.rowWidth;
+        add(x, y5);
+        add(x, y6);
+        x -= p.sampleWidth;
+        add(x, y6);
+        add(x, y5);
+      }
+      add(x1, y5);
+      add(x1, y6);
+      add(x0, y6);
+      add(x0, y1);
+
+      const lines = pointsToLines(outerPoints);
+
+      for (const x of innerStartXs) {
+        let rectPoints: Vec2[] = [];
+        const add = (x: number, y: number) => {
+          rectPoints.push({ x, y });
+        };
+        add(x, y3);
+        add(x + p.floorSliceWidth, y3);
+        add(x + p.floorSliceWidth, y4);
+        add(x, y4);
+        add(x, y3);
+        lines.push(...pointsToLines(rectPoints));
+      }
+
+      return lines;
+    }
+
+    function createSideMulti(p: WaterBoxParams, count: number): Line[] {
+      const referenceLines = createSide(p);
+      const lines = [];
+      for (let i = 0; i < count; i++) {
+        let offset = { x: 0, y: i * (p.height - p.heightOverlap) };
+        lines.push(...offsetLines(referenceLines, offset));
+      }
+      return lines;
+    }
+
+    function createFrontMulti(p: WaterBoxParams, count: number): Line[] {
+      const referenceLines = createFront(p);
+      const lines = [];
+      for (let i = 0; i < count; i++) {
+        let offset = { x: 0, y: i * (p.height - p.heightOverlap) };
+        lines.push(...offsetLines(referenceLines, offset));
+      }
+      return lines;
+    }
+
+    function createSampleRowMulti(p: WaterBoxParams, count: number): Line[] {
+      const referenceLines = createSampleRow(p);
+      const lines = [];
+      for (let i = 0; i < count; i++) {
+        let offset = { x: i * p.sampleWidth, y: 0 };
+        lines.push(...offsetLines(referenceLines, offset));
+      }
+      return lines;
+    }
+
+    function createBottomMulti(p: WaterBoxParams, count: number): Line[] {
+      const referenceLines = createBottom(p);
+      const bounds = findLinesBoundingBox(referenceLines);
+      const lines = [];
+      for (let i = 0; i < count; i++) {
+        let offset = { x: 0, y: i * (bounds.yMax - bounds.yMin) };
+        lines.push(...offsetLines(referenceLines, offset));
+      }
+      return lines;
+    }
+
+    function offsetLines(lines: Line[], offset: Vec2): Line[] {
+      const result = [];
+      for (const line of lines) {
+        result.push({
+          a: offsetVec2(line.a, offset),
+          b: offsetVec2(line.b, offset),
+        });
+      }
+      return result;
+    }
+
+    function offsetVec2(v: Vec2, offset: Vec2): Vec2 {
+      return { x: v.x + offset.x, y: v.y + offset.y };
+    }
+
+    function pointsToLines(points: Vec2[]): Line[] {
+      const lines = [];
+      for (let i = 0; i < points.length - 1; i++) {
+        const start = points[i];
+        const end = points[i + 1];
+        lines.push({ a: start, b: end });
+      }
+      return lines;
+    }
+
+    function createCutLine(line: Line, color: string) {
+      const svgLine = document.createElementNS(
+        "http://www.w3.org/2000/svg",
+        "line"
+      );
+      svgLine.setAttribute("x1", line.a.x.toString());
+      svgLine.setAttribute("y1", line.a.y.toString());
+      svgLine.setAttribute("x2", line.b.x.toString());
+      svgLine.setAttribute("y2", line.b.y.toString());
+      svgLine.setAttribute("stroke", color);
+      svgLine.setAttribute("stroke-width", "1");
+      svgLine.setAttribute("vector-effect", "non-scaling-stroke");
+      return svgLine;
+    }
+
+    for (let elem of [
+      thicknessWoodElem,
+      thicknessGlassElem,
+      rowsElem,
+      sampleWidthElem,
+      rowLengthElem,
+      rowWidthElem,
+      holderWidthElem,
+      overshootElem,
+      innerStabilityWidthElem,
+      floorSliceWidthElem,
+      frontSliceWidthElem,
+      heightElem,
+      heightOverlapElem,
+      verticalHolderElem,
+      floorClearanceElem,
+    ]) {
+      elem.addEventListener("input", function () {
+        updatePreview();
       });
     }
-    return result;
-  }
 
-  function offsetVec2(v: Vec2, offset: Vec2): Vec2 {
-    return { x: v.x + offset.x, y: v.y + offset.y };
-  }
+    registerThemeToggleListener(updatePreview);
 
-  function pointsToLines(points: Vec2[]): Line[] {
-    const lines = [];
-    for (let i = 0; i < points.length - 1; i++) {
-      const start = points[i];
-      const end = points[i + 1];
-      lines.push({ a: start, b: end });
-    }
-    return lines;
-  }
-
-  function createCutLine(line: Line, color: string) {
-    const svgLine = document.createElementNS(
-      "http://www.w3.org/2000/svg",
-      "line"
-    );
-    svgLine.setAttribute("x1", line.a.x.toString());
-    svgLine.setAttribute("y1", line.a.y.toString());
-    svgLine.setAttribute("x2", line.b.x.toString());
-    svgLine.setAttribute("y2", line.b.y.toString());
-    svgLine.setAttribute("stroke", color);
-    svgLine.setAttribute("stroke-width", "1");
-    svgLine.setAttribute("vector-effect", "non-scaling-stroke");
-    return svgLine;
-  }
-
-  for (let elem of [
-    thicknessWoodElem,
-    thicknessGlassElem,
-    rowsElem,
-    sampleWidthElem,
-    rowLengthElem,
-    rowWidthElem,
-    holderWidthElem,
-    overshootElem,
-    innerStabilityWidthElem,
-    floorSliceWidthElem,
-    frontSliceWidthElem,
-    heightElem,
-    heightOverlapElem,
-    verticalHolderElem,
-    floorClearanceElem,
-  ]) {
-    elem.addEventListener("input", function () {
-      updatePreview();
-    });
-  }
-
-  registerThemeToggleListener(updatePreview);
-
-  updatePreview();
-</script>
+    updatePreview();
+  </script>
+</div>

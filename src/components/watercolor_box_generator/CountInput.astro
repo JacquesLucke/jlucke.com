@@ -9,12 +9,14 @@ const { name, id, defaultValue } = Astro.props;
 ---
 
 <div>
-  {name}
+  <span class="inline-block w-50">
+    {name}:
+  </span>
   <input
     type="number"
     id={id}
     value={defaultValue}
-    class="persist-value text-right"
+    class="persist-value w-20 text-right"
   />
 </div>
 

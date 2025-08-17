@@ -1,0 +1,14 @@
+---
+interface Props {
+  label: string;
+  id: string;
+}
+
+const { label, id } = Astro.props;
+---
+
+<button
+  id={id}
+  class="bg-surface-1 hover:bg-surface-2 cursor-pointer rounded p-2 font-sans transition"
+  >{label}</button
+>

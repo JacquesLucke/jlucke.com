@@ -106,6 +106,12 @@ import SvgPreviewDiv from "./SvgPreviewDiv.astro";
           id="watercolor-box-generator-floor-clearance"
           defaultValue={3}
         />
+        <div class="mt-4 flex justify-center">
+          <button
+            class="bg-surface-1 hover:bg-surface-2 rounded px-2 transition"
+            id="watercolor-box-reset-all">Reset All</button
+          >
+        </div>
       </div>
     </div>
 
@@ -136,6 +142,7 @@ import SvgPreviewDiv from "./SvgPreviewDiv.astro";
 
   <script>
     import { registerThemeToggleListener } from "../../scripts/dark_mode";
+    import { persistInput } from "../../scripts/persistent_inputs";
 
     interface WaterBoxParams {
       woodThickness: number;
@@ -713,6 +720,10 @@ import SvgPreviewDiv from "./SvgPreviewDiv.astro";
       "watercolor-box-preview-row"
     )! as HTMLDivElement;
 
+    const watercolorBoxResetAll = document.getElementById(
+      "watercolor-box-reset-all"
+    )! as HTMLButtonElement;
+
     const watercolorBoxDownloadSide = document.getElementById(
       "watercolor-box-download-side"
     )! as HTMLButtonElement;
@@ -726,7 +737,7 @@ import SvgPreviewDiv from "./SvgPreviewDiv.astro";
       "watercolor-box-download-row"
     )! as HTMLButtonElement;
 
-    for (let elem of [
+    const inputElements = [
       thicknessWoodElem,
       thicknessGlassElem,
       rowsElem,
@@ -746,7 +757,9 @@ import SvgPreviewDiv from "./SvgPreviewDiv.astro";
       watercolorBoxFrontCount,
       watercolorBoxBottomCount,
       watercolorBoxRowCount,
-    ]) {
+    ];
+
+    for (let elem of inputElements) {
       elem.addEventListener("input", function () {
         updatePreview();
       });
@@ -774,6 +787,14 @@ import SvgPreviewDiv from "./SvgPreviewDiv.astro";
       const counts = getCounts();
       const lines = createSampleRowMulti(params, counts.row);
       downloadLines(lines, "watercolor_box_row.svg");
+    });
+
+    watercolorBoxResetAll.addEventListener("click", () => {
+      for (let elem of inputElements) {
+        elem.value = elem.defaultValue;
+        persistInput(elem);
+      }
+      updatePreview();
     });
 
     registerThemeToggleListener(updatePreview);

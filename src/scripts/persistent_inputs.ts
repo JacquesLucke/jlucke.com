@@ -1,8 +1,17 @@
+function getStorageKey(elem: HTMLInputElement) {
+  return `persistent-input-${elem.id}`;
+}
+
+export function persistInput(elem: HTMLInputElement) {
+  const storageKey = getStorageKey(elem);
+  localStorage.setItem(storageKey, elem.value);
+}
+
 for (const elem of document.querySelectorAll(".persist-value")) {
   if (elem instanceof HTMLInputElement) {
-    const storageKey = `count-input-${elem.id}`;
+    const storageKey = getStorageKey(elem);
     elem.addEventListener("input", () => {
-      localStorage.setItem(storageKey, elem.value);
+      persistInput(elem);
     });
     const storedValue = localStorage.getItem(storageKey);
     if (storedValue === null) {

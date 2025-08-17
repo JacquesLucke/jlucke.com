@@ -30,6 +30,51 @@ import MillimeterInput from "./MillimeterInput.astro";
     id="watercolor-box-generator-row-width"
     defaultValue={20}
   />
+  <MillimeterInput
+    name="Holder Width"
+    id="watercolor-box-generator-holder-width"
+    defaultValue={3}
+  />
+  <MillimeterInput
+    name="Overshoot"
+    id="watercolor-box-generator-overshoot"
+    defaultValue={5}
+  />
+  <MillimeterInput
+    name="Inner Stability Width"
+    id="watercolor-box-generator-inner-stability-width"
+    defaultValue={3}
+  />
+  <MillimeterInput
+    name="Floor Slice Width"
+    id="watercolor-box-generator-floor-slice-width"
+    defaultValue={10}
+  />
+  <MillimeterInput
+    name="Front Slice Width"
+    id="watercolor-box-generator-front-slice-width"
+    defaultValue={10}
+  />
+  <MillimeterInput
+    name="Height"
+    id="watercolor-box-generator-height"
+    defaultValue={24}
+  />
+  <MillimeterInput
+    name="Height Overlap"
+    id="watercolor-box-generator-height-overlap"
+    defaultValue={3}
+  />
+  <MillimeterInput
+    name="Vertical Holder"
+    id="watercolor-box-generator-vertical-holder"
+    defaultValue={6}
+  />
+  <MillimeterInput
+    name="Floor Clearance"
+    id="watercolor-box-generator-floor-clearance"
+    defaultValue={3}
+  />
 
   <div
     id="watercolor-box-preview"
@@ -59,6 +104,33 @@ import MillimeterInput from "./MillimeterInput.astro";
   )! as HTMLInputElement;
   const rowWidthElem = document.getElementById(
     "watercolor-box-generator-row-width"
+  )! as HTMLInputElement;
+  const holderWidthElem = document.getElementById(
+    "watercolor-box-generator-holder-width"
+  )! as HTMLInputElement;
+  const overshootElem = document.getElementById(
+    "watercolor-box-generator-overshoot"
+  )! as HTMLInputElement;
+  const innerStabilityWidthElem = document.getElementById(
+    "watercolor-box-generator-inner-stability-width"
+  )! as HTMLInputElement;
+  const floorSliceWidthElem = document.getElementById(
+    "watercolor-box-generator-floor-slice-width"
+  )! as HTMLInputElement;
+  const frontSliceWidthElem = document.getElementById(
+    "watercolor-box-generator-front-slice-width"
+  )! as HTMLInputElement;
+  const heightElem = document.getElementById(
+    "watercolor-box-generator-height"
+  )! as HTMLInputElement;
+  const heightOverlapElem = document.getElementById(
+    "watercolor-box-generator-height-overlap"
+  )! as HTMLInputElement;
+  const verticalHolderElem = document.getElementById(
+    "watercolor-box-generator-vertical-holder"
+  )! as HTMLInputElement;
+  const floorClearanceElem = document.getElementById(
+    "watercolor-box-generator-floor-clearance"
   )! as HTMLInputElement;
 
   const watercolorBoxPreview = document.getElementById(
@@ -108,15 +180,15 @@ import MillimeterInput from "./MillimeterInput.astro";
       sampleWidth: parseFloat(sampleWidthElem.value),
       rowLength: parseFloat(rowLengthElem.value),
       rowWidth: parseFloat(rowWidthElem.value),
-      holderWidth: 3,
-      overshoot: 5,
-      innerStabilityWidth: 3,
-      floorSliceWidth: 10,
-      frontSliceWidth: 10,
-      height: 24,
-      heightOverlap: 3,
-      verticalHolder: 6,
-      floorClearance: 3,
+      holderWidth: parseFloat(holderWidthElem.value),
+      overshoot: parseFloat(overshootElem.value),
+      innerStabilityWidth: parseFloat(innerStabilityWidthElem.value),
+      floorSliceWidth: parseFloat(floorSliceWidthElem.value),
+      frontSliceWidth: parseFloat(frontSliceWidthElem.value),
+      height: parseFloat(heightElem.value),
+      heightOverlap: parseFloat(heightOverlapElem.value),
+      verticalHolder: parseFloat(verticalHolderElem.value),
+      floorClearance: parseFloat(floorClearanceElem.value),
     };
   }
 
@@ -497,6 +569,15 @@ import MillimeterInput from "./MillimeterInput.astro";
     sampleWidthElem,
     rowLengthElem,
     rowWidthElem,
+    holderWidthElem,
+    overshootElem,
+    innerStabilityWidthElem,
+    floorSliceWidthElem,
+    frontSliceWidthElem,
+    heightElem,
+    heightOverlapElem,
+    verticalHolderElem,
+    floorClearanceElem,
   ]) {
     elem.addEventListener("input", function () {
       updatePreview();

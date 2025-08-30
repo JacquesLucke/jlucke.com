@@ -10,3 +10,5 @@ Westfalenhalle
 Ente
 json
 VSCode
+Lulkowski
+Lucke

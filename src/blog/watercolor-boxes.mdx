@@ -8,5 +8,86 @@ tags: []
 ---
 
 import WatercolorBoxGenerator from "../components/watercolor_box_generator/WatercolorBoxGenerator.astro";
+import BlogAssetGroup from "/src/components/BlogAssetsGroup.astro";
+
+More than a year ago, Vivien and Julien (both artists at the Blender Studio) showed me that they were designing a storage solution for Vivien's watercolors. Existing storage solutions apparently had aspects left to be desired. This post briefly describes the design process and also comes with a generator at the end that allows anyone to build their own boxes.
+
+<BlogAssetGroup
+  sources={[
+    ["/src/assets/watercolor_boxes/mess_of_colors.jpg", "Mess of Colors"],
+    ["/src/assets/watercolor_boxes/dog_walk_colors.jpg", "Organized Colors"],
+  ]}
+/>
+
+## Problem and Requirements
+
+> From the artist's point of view the problem that the boxes aim to solve is that once you have a certain amount of watercolor pans, they can't be stored in a "Tupperware system". A lot of them are made with honey, stay gloopy even when dry and thus stick to each other if piled up. Also, it takes forever to dig for the right paint even if you have lots of containers for different brands or hues.
+>
+> Any solution to this had to keep the pans neatly separate, be modular and stackable to save precious desk space. Also, the ideal design for the box was to comfortably fit a mix of pans and half pans (some of which were 3D printed), by a variety of European and American manufacturers. Ideally there would be little wasted space no matter how you combine pans with half pans in one row, but also some wiggle room for easy removal and reshuffling.
+>
+> The other requirement was enough swatching space to see a sample of each paint and maybe some pigment info. Currently, I use the swatch space just for the sample to swiftly identify the paint as I already store all the pigment properties of the watercolors elsewhere. The swatches needed to be covered by a layer of acrylic glass for some protection, for when you inevitably paint straight out of the storage boxes.
+>
+> -- <cite>Vivien Lulkowski</cite>
+
+## Design Process
+
+Originally, they were working on a 3D-printable design in Blender. This generally works, but the printing of large boxes takes a while, and they were also not entirely happy with the design yet. I recently learned about laser cutters before that and found that it may be better to design the storage solution for manufacturing with a laser cutter in mind. This can result in a simpler design that's also much faster to produce in bulk (assuming the availability of a laser cutter of course).
+
+Not having done anything like this before, I tried to sketch out my basic idea in Blender. For that I also used the [CAD Sketcher](https://www.cadsketcher.com/) add-on which was also the first time I used any CAD tools ever. I was pleasantly surprised by how well that went. The most tricky aspect was design it so that everything fits and remains stackable. Doing the design in 3D instead of just on paper helped a lot with that.
+
+Later on, I also recreated the design in [FreeCAD](https://www.freecad.org/). That was mainly a learning exercise since I never used FreeCAD before either. I was also hoping to iterate in the design more easily there and have it be easier to export the design as .svg. In the end the initial idea for the design worked out surprisingly well though.
+
+<BlogAssetGroup
+  sources={[
+    ["/src/assets/watercolor_boxes/blender_model.png", "Initial Blender Model"],
+    ["/src/assets/watercolor_boxes/freecad_sketch.png", "FreeCAD Sketch"],
+  ]}
+/>
+
+After producing the first box, we noticed that the dimensions were not ideal yet. The design also had a weak point as shown in the image at the bottom (part of the side piece is broken off).
+
+<BlogAssetGroup
+  sources={[
+    ["/src/assets/watercolor_boxes/initial_box.jpg", "Initial Box"],
+    ["/src/assets/watercolor_boxes/dimensions_sketch.jpg", "Feedback"],
+  ]}
+/>
+
+## Final Design
+
+The final design is made up of four different pieces (floor, left/right, front-back and inlays). Everything can be made out of wood (3mm MDF in our case), except for the covers for the color samples which are made out of acrylic (also 3mm thick).
+
+<BlogAssetGroup
+  sources={[
+    ["/src/assets/watercolor_boxes/many_pieces.jpg", "Individual Pieces"],
+    ["/src/assets/watercolor_boxes/box_tower.jpg", "Tower"],
+  ]}
+/>
+
+Producing a single box with a laser cutter takes just a few minutes. It's also very easy to produce them in bulk.
+
+![Cutting side pieces 10x timelapse](/src/assets/watercolor_boxes/side_pieces_cut_timelapse_10x.mp4)
+
+Assembling a box can be done in about a minute and requires no extra tools or glue. Although one can reenforce the contacts with glue of cWourse.
+
+![Assembly Steps](/src/assets/watercolor_boxes/assembly_steps.mp4)
+
+> I was really happy with how the boxes turned out since they solve all the listed issues for me and on top of that they are lightweight, cheap to produce and quick to put together and disassemble! The concept seems really shareable as my troubles with piles of pans aren't unique among other watercolorists and I haven't encountered a solid solution to the problem, especially within a reasonable budget.
+>
+> One minor thing that could be improved is a spot where the wood gets a bit weak after repeated disassembly and could break off, but the boxes don't become unusable because of this. Also in my case I could just as well glue them once I don't need to take them apart anymore.
+>
+> -- <cite>Vivien Lulkowski</cite>
+
+![Many Filled Boxes](/src/assets/watercolor_boxes/many_filled_boxes.jpg)
+
+## Generator
+
+The generator below creates .svg files required for manufacturing the box with custom dimensions. Especially the material thickness might need to be adjusted to get a good fit. In my case, just using the exact thickness of the material (3mm) happened to work well without further adjustments.
+
+Note, the generator does not deduplicate lines currently. So you might want to do that yourself when producing lots of boxes to safe time. However, it should work fine without deduplication. Alternatively, you can also just add a gap between the individual pieces manually.
+
+The design is licensed under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/). Credit goes to Vivien Lulkowski and Jacques Lucke.
 
 <WatercolorBoxGenerator />
+
+![Tiny box to test the generator](/src/assets/watercolor_boxes/tiny_test_box.jpg)

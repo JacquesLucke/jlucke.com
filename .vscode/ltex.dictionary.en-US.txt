@@ -12,3 +12,5 @@ json
 VSCode
 Lulkowski
 Lucke
+BlogAssetGroup
+WatercolorBoxGenerator

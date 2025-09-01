@@ -6,7 +6,8 @@ export const supportedTags = [
   "Teaching",
   "Photography",
   "Food",
-  "Funding",
+  "Social",
+  "Sports",
 ] as const;
 
 const blog = defineCollection({

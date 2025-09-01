@@ -3,19 +3,21 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import RecentPostCard from "../components/RecentPostCard.astro";
 import {
   getPublicBlogPosts,
+  getPublishedTags,
   sortPostsMostRecentFirst,
 } from "../scripts/blog_posts";
-import { supportedTags } from "../content.config";
 
 let posts = await getPublicBlogPosts();
 sortPostsMostRecentFirst(posts);
+
+const publishedTags = await getPublishedTags();
 ---
 
 <BaseLayout title="Blog by Jacques" description="Overview over the blog posts">
   <h1 class="mt-4 mb-1 px-2 text-2xl font-bold lg:px-0">Blog Posts</h1>
   <div class="text-muted mb-4 px-2 lg:px-0">
     {
-      supportedTags.map((tag) => (
+      publishedTags.map((tag) => (
         <a href={`/tags/${tag}`} class="mr-2 inline-block underline">
           {tag}
         </a>

@@ -14,3 +14,4 @@ Lulkowski
 Lucke
 BlogAssetGroup
 WatercolorBoxGenerator
+BlogCollapsibleSection

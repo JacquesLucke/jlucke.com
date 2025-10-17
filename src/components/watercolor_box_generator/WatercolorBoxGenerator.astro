@@ -221,19 +221,19 @@ import SvgPreviewDiv from "./SvgPreviewDiv.astro";
 
       linesToSvgImage(
         watercolorBoxPreviewSide,
-        createSideMulti(params, counts.side)
+        createSideMulti(params, counts.side),
       );
       linesToSvgImage(
         watercolorBoxPreviewFront,
-        createFrontMulti(params, counts.front)
+        createFrontMulti(params, counts.front),
       );
       linesToSvgImage(
         watercolorBoxPreviewBottom,
-        createBottomMulti(params, counts.bottom)
+        createBottomMulti(params, counts.bottom),
       );
       linesToSvgImage(
         watercolorBoxPreviewRow,
-        createSampleRowMulti(params, counts.row)
+        createSampleRowMulti(params, counts.row),
       );
     }
 
@@ -260,7 +260,7 @@ import SvgPreviewDiv from "./SvgPreviewDiv.astro";
       svg.setAttribute("xmlns", "http://www.w3.org/2000/svg");
       svg.setAttribute(
         "viewBox",
-        `-${margin} -${margin} ${width + 2 * margin} ${height + 2 * margin}`
+        `-${margin} -${margin} ${width + 2 * margin} ${height + 2 * margin}`,
       );
       svg.setAttribute("width", `${width}mm`);
       svg.setAttribute("height", `${height}mm`);
@@ -638,7 +638,7 @@ import SvgPreviewDiv from "./SvgPreviewDiv.astro";
     function createCutLine(line: Line) {
       const svgLine = document.createElementNS(
         "http://www.w3.org/2000/svg",
-        "line"
+        "line",
       );
       svgLine.setAttribute("x1", line.a.x.toString());
       svgLine.setAttribute("y1", line.a.y.toString());
@@ -649,92 +649,92 @@ import SvgPreviewDiv from "./SvgPreviewDiv.astro";
     }
 
     const thicknessWoodElem = document.getElementById(
-      "watercolor-box-generator-material-thickness-wood"
+      "watercolor-box-generator-material-thickness-wood",
     )! as HTMLInputElement;
     const thicknessGlassElem = document.getElementById(
-      "watercolor-box-generator-material-thickness-glass"
+      "watercolor-box-generator-material-thickness-glass",
     )! as HTMLInputElement;
     const rowsElem = document.getElementById(
-      "watercolor-box-generator-rows"
+      "watercolor-box-generator-rows",
     )! as HTMLInputElement;
     const sampleWidthElem = document.getElementById(
-      "watercolor-box-generator-sample-width"
+      "watercolor-box-generator-sample-width",
     )! as HTMLInputElement;
     const rowLengthElem = document.getElementById(
-      "watercolor-box-generator-row-length"
+      "watercolor-box-generator-row-length",
     )! as HTMLInputElement;
     const rowWidthElem = document.getElementById(
-      "watercolor-box-generator-row-width"
+      "watercolor-box-generator-row-width",
     )! as HTMLInputElement;
     const holderWidthElem = document.getElementById(
-      "watercolor-box-generator-holder-width"
+      "watercolor-box-generator-holder-width",
     )! as HTMLInputElement;
     const overshootElem = document.getElementById(
-      "watercolor-box-generator-overshoot"
+      "watercolor-box-generator-overshoot",
     )! as HTMLInputElement;
     const innerStabilityWidthElem = document.getElementById(
-      "watercolor-box-generator-inner-stability-width"
+      "watercolor-box-generator-inner-stability-width",
     )! as HTMLInputElement;
     const floorSliceWidthElem = document.getElementById(
-      "watercolor-box-generator-floor-slice-width"
+      "watercolor-box-generator-floor-slice-width",
     )! as HTMLInputElement;
     const frontSliceWidthElem = document.getElementById(
-      "watercolor-box-generator-front-slice-width"
+      "watercolor-box-generator-front-slice-width",
     )! as HTMLInputElement;
     const heightElem = document.getElementById(
-      "watercolor-box-generator-height"
+      "watercolor-box-generator-height",
     )! as HTMLInputElement;
     const heightOverlapElem = document.getElementById(
-      "watercolor-box-generator-height-overlap"
+      "watercolor-box-generator-height-overlap",
     )! as HTMLInputElement;
     const verticalHolderElem = document.getElementById(
-      "watercolor-box-generator-vertical-holder"
+      "watercolor-box-generator-vertical-holder",
     )! as HTMLInputElement;
     const floorClearanceElem = document.getElementById(
-      "watercolor-box-generator-floor-clearance"
+      "watercolor-box-generator-floor-clearance",
     )! as HTMLInputElement;
 
     const watercolorBoxSideCount = document.getElementById(
-      "watercolor-box-side-count"
+      "watercolor-box-side-count",
     )! as HTMLInputElement;
     const watercolorBoxFrontCount = document.getElementById(
-      "watercolor-box-front-count"
+      "watercolor-box-front-count",
     )! as HTMLInputElement;
     const watercolorBoxBottomCount = document.getElementById(
-      "watercolor-box-bottom-count"
+      "watercolor-box-bottom-count",
     )! as HTMLInputElement;
     const watercolorBoxRowCount = document.getElementById(
-      "watercolor-box-row-count"
+      "watercolor-box-row-count",
     )! as HTMLInputElement;
 
     const watercolorBoxPreviewSide = document.getElementById(
-      "watercolor-box-preview-side"
+      "watercolor-box-preview-side",
     )! as HTMLDivElement;
     const watercolorBoxPreviewFront = document.getElementById(
-      "watercolor-box-preview-front"
+      "watercolor-box-preview-front",
     )! as HTMLDivElement;
     const watercolorBoxPreviewBottom = document.getElementById(
-      "watercolor-box-preview-bottom"
+      "watercolor-box-preview-bottom",
     )! as HTMLDivElement;
     const watercolorBoxPreviewRow = document.getElementById(
-      "watercolor-box-preview-row"
+      "watercolor-box-preview-row",
     )! as HTMLDivElement;
 
     const watercolorBoxResetAll = document.getElementById(
-      "watercolor-box-reset-all"
+      "watercolor-box-reset-all",
     )! as HTMLButtonElement;
 
     const watercolorBoxDownloadSide = document.getElementById(
-      "watercolor-box-download-side"
+      "watercolor-box-download-side",
     )! as HTMLButtonElement;
     const watercolorBoxDownloadFront = document.getElementById(
-      "watercolor-box-download-front"
+      "watercolor-box-download-front",
     )! as HTMLButtonElement;
     const watercolorBoxDownloadBottom = document.getElementById(
-      "watercolor-box-download-bottom"
+      "watercolor-box-download-bottom",
     )! as HTMLButtonElement;
     const watercolorBoxDownloadRow = document.getElementById(
-      "watercolor-box-download-row"
+      "watercolor-box-download-row",
     )! as HTMLButtonElement;
 
     const inputElements = [

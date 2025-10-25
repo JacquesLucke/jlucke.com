@@ -10,12 +10,16 @@ interface Props {
 
 const { src, alt, description } = Astro.props;
 
-const thumbnailImage = await getImage({
-  src: await loadImage(src + ".thumbnail.jpg"),
-  format: "webp",
-  width: 300,
-  quality: 50,
-});
+let thumbnailImage = undefined;
+
+try {
+  thumbnailImage = await getImage({
+    src: await loadImage(src + ".thumbnail.jpg"),
+    format: "webp",
+    width: 300,
+    quality: 50,
+  });
+} catch {}
 ---
 
 <div class="flex justify-center">
@@ -26,7 +30,7 @@ const thumbnailImage = await getImage({
       width={400}
       class="mt-2 max-h-80 rounded"
       preload="none"
-      poster={thumbnailImage.src}
+      poster={thumbnailImage?.src}
       area-label={alt}
     >
       <source src={await loadVideo(src)} />

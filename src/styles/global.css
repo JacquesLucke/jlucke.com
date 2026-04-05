@@ -1,9 +1,5 @@
 @import "tailwindcss";
 
-@import "@fontsource/lato";
-@import "@fontsource/source-serif-pro";
-@import "@fontsource/source-code-pro";
-
 @theme {
   --color-surface-0: ;
   --color-surface-1: ;
@@ -22,9 +18,9 @@
     --color-normal: #111111;
     --color-muted: #575757;
 
-    --font-sans: "Lato", sans-serif;
-    --font-serif: "Source Serif Pro", serif;
-    --font-mono: "Source Code Pro", monospace;
+    --font-sans: var(--font-lato), sans-serif;
+    --font-serif: var(--font-source-serif-pro), serif;
+    --font-mono: var(--font-source-code-pro), monospace;
   }
 
   .dark {

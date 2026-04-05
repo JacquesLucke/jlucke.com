@@ -1,6 +1,5 @@
 // @ts-check
 import { defineConfig } from "astro/config";
-import rehypeAddClasses from "rehype-add-classes";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import rehypeSlug from "rehype-slug";
 
@@ -18,7 +17,6 @@ export default defineConfig({
 
   markdown: {
     rehypePlugins: [
-      [rehypeAddClasses, {}],
       [rehypeSlug, {}],
       [
         rehypeAutolinkHeadings,
